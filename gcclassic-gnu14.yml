@@ -1,0 +1,24 @@
+#===============================================================================
+# Micromamba environment specification for GCClassic with GNU 14.1.0 compilers
+#
+# To create the environment:
+#   micromamba create --file gcclassic-gnu14.yml
+#
+# NOTE: This file does not pin package builds or dependencies. To **exactly**
+# reproduce the environment, use the gcclassic-gnu14.lock file:
+#   micromamba create --name gcclassic-gnu14 --file gcclassic-gnu14.lock
+#===============================================================================
+
+name: gcclassic-gnu14
+channels:
+- conda-forge
+dependencies:
+- gcc=14.1.0
+- gxx=14.1.0  # g++
+- gfortran=14.1.0
+- make=4.4.1
+- cmake=3.30.3
+- libnetcdf=4.9.2  # netcdf-c
+- netcdf-fortran=4.6.1
+- git
+- pyyaml  # for download_data.py
