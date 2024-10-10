@@ -62,6 +62,21 @@ link -s /home/PROJECTS/pr-geoschem/geos-chem-setup/gcclassic-gnu14.env .
 source gcclasic-gnu14.env
 ```
 
+You should also **copy** the example job scripts from `jobscripts/` to your run dir:
+
+```bash
+# In a run dir
+cp /home/PROJECTS/pr-geoschem/geos-chem-setup/jobscripts/*.sh .
+```
+
+These scripts facilitate submitting jobs to the [OAR job manager](https://gricad-doc.univ-grenoble-alpes.fr/en/hpc/joblaunch/job_management/) to:
+
+1. Compile the code (`1_build.sh`)
+2. Execute a dryrun to check the configuration and identify any missing input data (`2_dryrun.sh`)
+3. Run the simulation (`3_run.sh`)
+
+Be sure to edit the run script (`3_run.sh`) to configure resources and walltime appropriate for your simulation.
+
 Refer to the [GCClassic documentation](https://geos-chem.readthedocs.io/en/stable/) for further deatils on [compiling the code](https://geos-chem.readthedocs.io/en/stable/gcclassic-user-guide/compile.html) and [configuring a simulation](https://geos-chem.readthedocs.io/en/stable/gcclassic-user-guide/config-overview.html). See [geos-chem-data](https://github.com/IGE-Microplastics/geos-chem-data) for instructions on downloading any input data needed for your simulation.
 
 Other tasks
@@ -83,6 +98,10 @@ Repository contents
 
 ```
 ├── .git/
+├── jobscripts/
+│   ├── 1_build.sh*       # Example build script
+│   ├── 2_dryrun.sh*      # Example dryrun script
+│   └── 3_run.sh*         # Example simulation script
 ├── README.md
 ├── gcclassic-gnu14.env   # Activation script for gcclassic-gnu14 environment
 ├── gcclassic-gnu14.lock  # Explicit spec for gcclassic-gnu14 environment
