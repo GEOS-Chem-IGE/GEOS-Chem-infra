@@ -22,3 +22,4 @@ dependencies:
 - netcdf-fortran=4.6.1
 - git
 - pyyaml  # for download_data.py
+- tree  # to display contents of ExtData
