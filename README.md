@@ -56,7 +56,7 @@ You should now be set up to build and run GCClassic. After [creating a run dir](
 
 ```bash
 # In a run dir
-link -s /home/PROJECTS/pr-geoschem/geos-chem-setup/gcclassic-gnu14.env .
+ln -s /home/PROJECTS/pr-geoschem/geos-chem-setup/gcclassic-gnu14.env .
 
 # You can now activate the environment with:
 source gcclasic-gnu14.env
