@@ -33,6 +33,7 @@ Open `setup.sh` and edit the configuration variables as needed. The default conf
 PROJECT='pr-geoschem'                                   # Project name
 CODE_DIR="/home/PROJECTS/pr-geoschem"                   # Shared code dir
 DATA_DIR="/bettik/PROJECTS/pr-geoschem/COMMON"          # Shared data dir
+MAMBA_DIR="/home/PROJECTS/pr-geoschem/micromamba"       # Micromamba envs dir
 SETUP_DIR="/home/PROJECTS/pr-geoschem/geos-chem-setup"  # Path to this repository
 GC_VERSION='14.4.3'                                     # GEOS-Chem Classic version
 ```
@@ -46,6 +47,7 @@ cd /home/PROJECTS/pr-geoschem/geos-chem-setup
 
 The setup script:
 
+* Installs [micromamba](https://mamba.readthedocs.io/en/latest/user_guide/micromamba.html)
 * Creates a micromamba environment (`gcclassic-gnu14`) containing the compilers and libraries needed to build and run GCClassic
 * Clones the GEOS-Chem model code [GCClassic](https://github.com/geoschem/GCClassic) in the shared code dir and checks out the specified version
 * Clones the input data repository [geos-chem-data](https://github.com/IGE-Microplastics/geos-chem-data) in the shared data dir
