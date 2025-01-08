@@ -26,7 +26,7 @@ CODE_DIR="/home/PROJECTS/${PROJECT}"           # Shared code dir
 DATA_DIR="/bettik/PROJECTS/${PROJECT}/COMMON"  # Shared data dir
 MAMBA_DIR="${CODE_DIR}/micromamba"             # Micromamba envs dir
 SETUP_DIR="${CODE_DIR}/geos-chem-setup"        # Dir containing this script
-GC_VERSION='14.4.3'                            # GEOS-Chem Classic version
+GC_VERSION='14.5.0'                            # GEOS-Chem Classic version
 
 #-------------------------------------------------------------------------------
 # ↑ SET THESE VARIABLES TO CONFIGURE THE SETUP SCRIPT ↑

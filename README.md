@@ -35,7 +35,7 @@ CODE_DIR="/home/PROJECTS/pr-geoschem"                   # Shared code dir
 DATA_DIR="/bettik/PROJECTS/pr-geoschem/COMMON"          # Shared data dir
 MAMBA_DIR="/home/PROJECTS/pr-geoschem/micromamba"       # Micromamba envs dir
 SETUP_DIR="/home/PROJECTS/pr-geoschem/geos-chem-setup"  # Path to this repository
-GC_VERSION='14.4.3'                                     # GEOS-Chem Classic version
+GC_VERSION='14.5.0'                                     # GEOS-Chem Classic version
 ```
 
 ### 3. Run the setup script
