@@ -49,9 +49,14 @@ echo 'Installing micromamba'
 echo '------------------------------------------------------------'
 echo ''
 
-if [ ! -e "$MAMBA_DIR"/micromamba ]; then
-  mkdir -p $MAMBA_DIR
-  cd -P $MAMBA_DIR
+read -n1 -s -r -p $'Press any key to continue...' key
+echo ''
+
+# Install micromamba
+MAMBA_EXE="${MAMBA_DIR}/micromamba"
+if [ ! -e "$MAMBA_EXE" ]; then
+  mkdir -p "$MAMBA_DIR"
+  cd -P "$MAMBA_DIR"
   echo 'Enter the following at the prompts:'
   echo "  Micromamba binary folder: $MAMBA_DIR"
   echo "  Init shell ($SHELL): n"
@@ -60,45 +65,69 @@ if [ ! -e "$MAMBA_DIR"/micromamba ]; then
   read -n1 -s -r -p $'Press any key to continue...' key
   echo ''
   "${SHELL}" <(curl -L micro.mamba.pm/install.sh)
+  echo ''
 fi
 
 echo '------------------------------------------------------------'
-echo 'Creating micromamba environments'
+echo 'Updating micromamba init script'
 echo '------------------------------------------------------------'
+echo ''
+
+read -n1 -s -r -p $'Press any key to continue...' key
+echo ''
+
+# Update the micromamba root prefix in init-mamba.sh
+MAMBA_INIT_SCRIPT="${SETUP_DIR}/init-mamba.sh"
+cd -P "$SETUP_DIR"
+sed -i -E "s|^MAMBA_ROOT_PREFIX=.+|MAMBA_ROOT_PREFIX=\"${MAMBA_DIR}\"|" $MAMBA_INIT_SCRIPT
+
+echo '------------------------------------------------------------'
+echo 'Building micromamba environment'
+echo '------------------------------------------------------------'
+echo ''
+
+read -n1 -s -r -p $'Press any key to continue...' key
 echo ''
 
 # Create environment for GCClassic with GNU 14.1.0 compilers
-if [ ! -e "${MAMBA_DIR}/envs/gcclassic-gnu14" ]; then
+GC_ENV=gcclassic-gnu14
+if [ ! -d "${MAMBA_DIR}/envs/${GC_ENV}" ]; then
   cd -P "$SETUP_DIR"
-  source init-mamba.sh
-  micromamba env create --yes --name gcclassic-gnu14 --file gcclassic-gnu14.lock
+  source "$MAMBA_INIT_SCRIPT"
+  micromamba env create --yes --name $GC_ENV --file "${GC_ENV}.lock"
 fi
 
 echo '------------------------------------------------------------'
-echo 'Cloning GEOS-Chem code'
+echo 'Cloning GEOS-Chem Classic source code'
 echo '------------------------------------------------------------'
 echo ''
 
-if [ ! -d "${CODE_DIR}/GCClassic-${GC_VERSION}" ]; then
+read -n1 -s -r -p $'Press any key to continue...' key
+echo ''
+
+# Clone the GCClassic source cocde
+GC_DIR="${CODE_DIR}/GCClassic-${GC_VERSION}"
+if [ ! -d "$GC_DIR" ]; then
 
   # Activate gcclassic-gnu14 to ensure a modern git
   cd -P "$SETUP_DIR"
-  source init-mamba.sh
-  micromamba activate gcclassic-gnu14
+  source "$MAMBA_INIT_SCRIPT"
+  micromamba activate "$GC_ENV"
 
   echo "Cloning GCClassic in $CODE_DIR"
   cd -P "$CODE_DIR"
-  git clone --recurse-submodules https://github.com/geoschem/GCClassic.git
-  cd GCClassic
+  git clone https://github.com/geoschem/GCClassic.git "$GC_DIR"
+  cd "$GC_DIR"
 
-  echo "Checking out GCClassic v${GC_VERSION}"
+  echo "Checking out GCClassic v${GC_VERSION} including submodules"
   git checkout "tags/${GC_VERSION}"
-  git branch "v${GC_VERSION}"
-  git switch "v${GC_VERSION}"
+  git switch -c "v${GC_VERSION}"
   git submodule update --init --recursive
 
   # Deactive environment
   micromamba deactivate
+  echo ''
+
 fi
 
 echo '------------------------------------------------------------'
@@ -106,12 +135,16 @@ echo 'Preparing data dir'
 echo '------------------------------------------------------------'
 echo ''
 
-# Clone geos-chem-data
-mkdir -p "$DATA_DIR"
+read -n1 -s -r -p $'Press any key to continue...' key
+echo ''
+
+# Clone geos-chem-data repository
 if [ ! -d "${CODE_DIR}/geos-chem-data" ]; then
+  mkdir -p "$DATA_DIR"
   cd -P "$DATA_DIR"
   echo "Cloning geos-chem-data in $DATA_DIR"
-  git clone https://github.com/IGE-Microplastics/geos-chem-data
+  git clone git@github.com:IGE-Microplastics/geos-chem-data
+  echo ''
 fi
 
 echo '------------------------------------------------------------'
@@ -119,14 +152,17 @@ echo 'Installing bashdatacatalog'
 echo '------------------------------------------------------------'
 echo ''
 
+read -n1 -s -r -p $'Press any key to continue...' key
+echo ''
+
 # Install bashdatacatalog
-if [ ! -d "${CODE_DIR}/bashdatacatalog" ]; then
+BASHDATACATALOG_DIR="${CODE_DIR}/bashdatacatalog"
+if [ ! -d "$BASHDATACATALOG_DIR" ]; then
   echo "Cloning bashdatacatalog in $CODE_DIR"
   cd -P "$CODE_DIR"
   git clone https://github.com/LiamBindle/bashdatacatalog.git
 
-  bashdatacatalog_bin="$CODE_DIR/bashdatacatalog/bin"
-
+  BASHDATACATALOG_BIN="${BASHDATACATALOG_BIN}/bin"
   echo ''
   echo '------------------------------------------------------------'
   echo '!!! IMPORTANT !!!'
@@ -134,15 +170,14 @@ if [ ! -d "${CODE_DIR}/bashdatacatalog" ]; then
   echo "To use the bashdatacatalog scripts, you must add them to your PATH"
   echo ''
   echo 'Example:'
-  echo "  export PATH=${bashdatacatalog_bin}:\$PATH"
+  echo "  export PATH=${BASHDATACATALOG_BIN}:\$PATH"
   echo ''
   echo 'Alternatively, you could link the scripts to a directory that is'
   echo 'already in your PATH such as ~/.local/bin or ~/bin'
   echo ''
   echo 'Example:'
-  echo "  ln -siv ${bashdatacatalog_bin}/* ~/.local/bin"
+  echo "  ln -siv ${BASHDATACATALOG_BIN}/* ~/.local/bin"
   echo ''
   echo '!!! IMPORTANT !!!'
   echo '------------------------------------------------------------'
-  echo ''
 fi

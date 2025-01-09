@@ -2,8 +2,8 @@
 #   source init-mamba.sh
 
 # Use pr-geoschem micromamba binary and environments
-MAMBA_ROOT_PREFIX=/home/PROJECTS/pr-geoschem/micromamba
-MAMBA_EXE=$MAMBA_ROOT_PREFIX/micromamba
+MAMBA_ROOT_PREFIX="/home/PROJECTS/pr-geoschem/micromamba"
+MAMBA_EXE="${MAMBA_ROOT_PREFIX}/micromamba"
 
 # Confirm micromamba is installed
 fail() {
@@ -17,7 +17,7 @@ if [ ! -e "$MAMBA_EXE" ]; then
   fail "micromamba binary not found: $MAMBA_EXE"
 fi
 
-# Parse and eval the output of `micromamba shell init --dry-run`
+# Generate and run micromamba shell init commands
 __mamba_shell_init="$(
   $MAMBA_EXE shell init $MAMBA_ROOT_PREFIX --dry-run \
     | sed -n '/# >>> mamba initialize >>>$/,/^# <<< mamba initialize <<<$/p'

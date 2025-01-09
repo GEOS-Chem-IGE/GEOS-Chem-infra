@@ -10,8 +10,7 @@
 #OAR -l /nodes=1/core=1,walltime=00:15:00
 #OAR -t heterogeneous
 
-# Go to the run dir and activate the environment
-cd "$(realpath "$(dirname -- "${BASH_SOURCE[0]}")")"
-source ./gcclassic-gnu14.env
+# Activate the GCClassic environment
+source gcclassic-gnu14.env
 
 time -p ./gcclassic --dryrun

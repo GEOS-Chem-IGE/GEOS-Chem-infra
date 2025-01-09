@@ -13,9 +13,8 @@
 # Exit on any error
 set -e
 
-# Go to the run dir and activate the environment
-cd "$(realpath "$(dirname -- "${BASH_SOURCE[0]}")")"
-source ./gcclassic-gnu14.env
+# Activate the GCClassic environment
+source gcclassic-gnu14.env
 
 set -x
 cd build
