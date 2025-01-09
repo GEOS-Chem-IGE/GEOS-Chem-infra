@@ -4,10 +4,10 @@ geos-chem-setup
 Configuration scripts and environment specs for running [GEOS-Chem Classic](https://geos-chem.readthedocs.io/en/latest/index.html) (GCClassic) on [CIMENT](https://gricad-doc.univ-grenoble-alpes.fr/en/hpc/).
 
 
-New user setup
---------------
+To run a simulation
+-------------------
 
-Follow the [new user guide](new-user-guide.md) to learn how to run GEOS-Chem simulations as a member of the `pr-geoschem` project.
+Follow the [simulation guide](simulation-guide.md) to run a GEOS-Chem simulation.
 
 
 Project setup
@@ -22,7 +22,7 @@ Connect to `dahu` (see [the GRICAD documentation](https://gricad-doc.univ-grenob
 ```bash
 # On dahu
 cd /home/PROJECTS/pr-geoschem
-git clone https://github.com/IGE-Microplastics/geos-chem-setup.git
+git clone git@github.com:IGE-Microplastics/geos-chem-setup.git
 ```
 
 ### 2. Configure the setup script
@@ -90,6 +90,7 @@ Repository contents
 ├── gcclassic-gnu14.lock  # Explicit spec for gcclassic-gnu14 environment
 ├── gcclassic-gnu14.yml   # Loose spec for gcclassic-gnu14 environment
 ├── init-mamba.sh         # Source this script to initialize micromamba
+├── new-user-guide.md     # Guide for new users
 ├── README.md             # Documentation
 └── setup.sh*             # Setup script
 ```
