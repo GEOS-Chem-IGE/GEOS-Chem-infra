@@ -1,7 +1,7 @@
 geos-chem-setup
 ===============
 
-Configuration scripts and environment specs for running [GEOS-Chem Classic](https://geos-chem.readthedocs.io/en/latest/index.html) (GCClassic) on [CIMENT](https://gricad-doc.univ-grenoble-alpes.fr/en/hpc/).
+Configuration scripts and environment specs for running [GEOS-Chem Classic](https://geos-chem.readthedocs.io/en/latest/index.html) (GCClassic) on [GRICAD/CIMENT](https://gricad-doc.univ-grenoble-alpes.fr/en/hpc/).
 
 
 To run a simulation
@@ -13,7 +13,7 @@ Follow the [simulation guide](simulation-guide.md) to run a GEOS-Chem simulation
 Project setup
 -------------
 
-These are the steps used to setup the `pr-geoschem` project on CIMENT. You should not need to repeat them.
+These are the steps used to setup the `pr-geoschem` project on GRICAD/CIMENT. You should not need to repeat them.
 
 ### 1. Clone this repository
 
@@ -86,11 +86,12 @@ Repository contents
 │   ├── 1_build.sh*       # Example build script
 │   ├── 2_dryrun.sh*      # Example dryrun script
 │   └── 3_run.sh*         # Example simulation script
+├── copy-rundir.sh        # Script to create a new run dir based on an existing one
 ├── gcclassic-gnu14.env   # Activation script for gcclassic-gnu14 environment
 ├── gcclassic-gnu14.lock  # Explicit spec for gcclassic-gnu14 environment
 ├── gcclassic-gnu14.yml   # Loose spec for gcclassic-gnu14 environment
 ├── init-mamba.sh         # Source this script to initialize micromamba
-├── new-user-guide.md     # Guide for new users
 ├── README.md             # Documentation
-└── setup.sh*             # Setup script
+├── setup.sh*             # Setup script
+└── simulation-guide.md   # Instructrions to set up a new simulation
 ```
