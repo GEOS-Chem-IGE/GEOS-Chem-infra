@@ -39,20 +39,26 @@ while true; do
     shift
 done
 
-OLD_DIR="$1"
-NEW_DIR="$2"
+if [ "$#" -lt 2 ]; then
+  echo "$help_message"
+  exit 1
+fi
 
-if [ ! -d $OLD_DIR ]; then
+# Remove trailing slashes from dirs
+OLD_DIR="${1%/}"
+NEW_DIR="${2%/}"
+
+if [ ! -d "$OLD_DIR" ]; then
   echo "No such dir: $OLD_DIR"
   exit 1
 fi
 
-if [ -e $NEW_DIR ]; then
+if [ -e "$NEW_DIR" ]; then
   echo "Already exists: $NEW_DIR"
   exit 1
 fi
 
-mkdir $NEW_DIR
+mkdir "$NEW_DIR"
 
 # Copy config files
 TO_COPY=(
@@ -66,23 +72,35 @@ TO_COPY=(
 )
 for FILE in "${TO_COPY[@]}"
 do
-  if [ -f $OLD_DIR/$FILE ]; then
-    cp -nv $OLD_DIR/$FILE $NEW_DIR/
+  if [ -f "$OLD_DIR/$FILE" ]; then
+    cp -nv "$OLD_DIR/$FILE" "$NEW_DIR"
   fi
 done
 
 # Copy run scripts
-for FILE in ${OLD_DIR}/*run.sh
+for FILE in "${OLD_DIR}"/*run.sh
 do
-  cp -nv $FILE $NEW_DIR/
+  cp -nv "$FILE" "$NEW_DIR"
 done
 
-# Link compiled gcclassic and environment
-for FILE in $OLD_DIR/gcclassic*
+# Link compiled gcclassic and environment (using *relative* symlink)
+for FILE in "$OLD_DIR"/gcclassic*
 do
-  ln -sv $(readlink -f $FILE) $NEW_DIR/
+  ln -sv $(readlink "$FILE") "$NEW_DIR"
 done
 
-# Make output dirs
-mkdir -vp $NEW_DIR/OutputDir
-mkdir -vp $NEW_DIR/Restarts
+# Make Restarts dir
+mkdir -pv "$NEW_DIR/Restarts"
+
+# Make OutputDir
+if [ -L "$OLD_DIR"/OutputDir ]; then
+  # If OLD_DIR/OutputDir is a symlink, create a NEW_DIR/OutputDir as a symlink
+  # to a dir named $NEW_DIR in the parent dir of OLD_DIR/OutputDir's target
+  NEW_OUTDIR=$(readlink -f "$OLD_DIR"/OutputDir)
+  NEW_OUTDIR=$(dirname "$NEW_OUTDIR")/$(basename "$NEW_DIR")
+  mkdir -pv "$NEW_OUTDIR"
+  ln -sv "$NEW_OUTDIR" "$NEW_DIR"/OutputDir
+else
+  # Otherwise, make OutputDir in NEW_DIR
+  mkdir -pv "$NEW_DIR/OutputDir"
+fi
