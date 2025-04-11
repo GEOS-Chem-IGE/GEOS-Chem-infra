@@ -13,13 +13,14 @@ name: gcclassic-gnu14
 channels:
 - conda-forge
 dependencies:
-- gcc=14.1.0
-- gxx=14.1.0  # g++
-- gfortran=14.1.0
-- make=4.4.1
+- awscli=2.25.8
 - cmake=3.30.3
+- gcc=14.1.0
+- gfortran=14.1.0
+- git=2.46.2
+- gxx=14.1.0  # g++
 - libnetcdf=4.9.2  # netcdf-c
+- make=4.4.1
 - netcdf-fortran=4.6.1
-- git
-- pyyaml  # for download_data.py
-- tree  # to display contents of ExtData
+- pyyaml=6.0.2  # for download_data.py
+- tree=2.1.3  # to display contents of ExtData
