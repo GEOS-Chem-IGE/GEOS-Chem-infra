@@ -17,6 +17,7 @@ set -e
 source gcclassic-gnu14.env
 
 set -x
+mkdir -p build
 cd build
 time -p cmake ../CodeDir -DRUNDIR=..
 time -p make -j
