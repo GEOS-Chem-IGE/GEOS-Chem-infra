@@ -38,16 +38,16 @@ rmdir OutputDir
 ln -s /bettik/PROJECTS/pr-geoschem/<your-username>/<new-output-dir> .
 ```
 
-3. Symlink the environment activation script:
+3. Copy the environment activation script:
 
 ```bash
-ln -s /home/PROJECTS/pr-geoschem/geos-chem-setup/gcclassic-gnu14.env .
+cp -iv /home/PROJECTS/pr-geoschem/geos-chem-setup/gcclassic-gnu14.env .
 ```
 
 4. Copy the job script templates:
 
 ```bash
-cp /home/PROJECTS/pr-geoschem/geos-chem-setup/jobscripts/*.sh .
+cp -iv /home/PROJECTS/pr-geoschem/geos-chem-setup/jobscripts/*.sh .
 ```
 
 5. Build the code:
@@ -73,7 +73,11 @@ oarsub -S ./2_dryrun.sh
 
 8. Download any missing input data:
 
-TODO document this
+If you need to download a large volume of data, edit `download-data.sh` to increase the walltime.
+
+```
+oarsub -S ./download-data.sh
+```
 
 9. Run your simulation
 
@@ -185,6 +189,11 @@ cd /home/PROJECTS/pr-geoschem/GCClassic-14.5.0/run
 ./createRunDir.sh
 ```
 
+You will be prompted with a series of questions to configure the run directory:
+
+> [!NOTE]
+> If you are using a different version of GEOS-Chem, the questions and available options may differ from those shown here.
+
 #### Configure input data and register as a GEOS-Chem user
 
 If this is the first time you have created a run directory, you will be prompted to enter the path to the `ExtData` directory that contains input data for GEOS-Chem (meteorology, emissions, etc.). Enter `/bettik/PROJECTS/pr-geoschem/COMMON/geos-chem-data/ExtData`:
@@ -255,7 +264,7 @@ Choose meteorology source:
 >>> 1
 ```
 
-Use 4.0 x 5.0 (degrees) horizontal resolution
+Use 4.0 x 5.0 (degrees) horizontal resolution:
 
 ```
 -----------------------------------------------------------
@@ -343,13 +352,13 @@ ln -s /bettik/PROJECTS/pr-geoschem/<your-username>/<new-output-dir> OutputDir
 
 ### 7. Configure the run environment
 
-This `pr-geoschem` project contains an environment constructed with [micromamba](https://mamba.readthedocs.io/en/latest/user_guide/micromamba.html) that includes all the external compilers and libraries needed to build and run GEOS-Chem Classic (see the [GCClassic documentation](https://geos-chem.readthedocs.io/en/stable/getting-started/system-req-soft.html) for details). You will need to activate this environment and set some environment variables whenever you build GEOS-Chem or run a simulation. The script `/home/PROJECTS/pr-geoschem/geos-chem-setup/gcclassic-gnu14.env` will do this automatically. To make it easy to run this script, you should create a symbolic link to it from your run directory:
+The `pr-geoschem` project contains an environment constructed with [micromamba](https://mamba.readthedocs.io/en/latest/user_guide/micromamba.html) that includes all the external compilers and libraries needed to build and run GEOS-Chem Classic (see the [GCClassic documentation](https://geos-chem.readthedocs.io/en/stable/getting-started/system-req-soft.html) for details). You will need to activate this environment and set some environment variables whenever you build GEOS-Chem or run a simulation. The script `/home/PROJECTS/pr-geoschem/geos-chem-setup/gcclassic-gnu14.env` will do this automatically. To make it easy to run this script, you should copy it into your run directory:
 
 ```bash
-ln -s /home/PROJECTS/pr-geoschem/geos-chem-setup/gcclassic-gnu14.env .
+cp -vi /home/PROJECTS/pr-geoschem/geos-chem-setup/gcclassic-gnu14.env .
 ```
 
-We use a symbolic link because you should not need to modify this script.
+We recommend copying the script rather than using a symbolic link because the script might be modified in the future.
 
 ### 8. Configure job scripts
 
@@ -359,9 +368,10 @@ The `pr-geoschem` project includes templates for job scripts that execute three 
 
 1. Build GCClassic (`1_build.sh`)
 2. Execute a dryrun to check the configuration and identify any missing input data (`2_dryrun.sh`)
-3. Run a simulation (`3_run.sh`)
+  * Download any missing input data identified by the dryrun (`download-data.sh`)
+4. Run a simulation (`3_run.sh`)
 
-You should **copy** these example job scripts from `/home/PROJECTS/pr-geoschem/geos-chem-setup/jobscripts` into your run dir. It's important to copy the scripts rather than linking them because you will need to modify the settings (e.g. job resources and walltime).
+You should copy these example job scripts from `/home/PROJECTS/pr-geoschem/geos-chem-setup/jobscripts` into your run dir. It's important to copy the scripts rather than linking them because you will need to modify the settings (e.g. job resources and walltime).
 
 ```bash
 cp /home/PROJECTS/pr-geoschem/geos-chem-setup/jobscripts/*.sh .
