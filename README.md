@@ -1,7 +1,7 @@
 geos-chem-setup
 ===============
 
-Configuration scripts and environment specs for running [GEOS-Chem Classic](https://geos-chem.readthedocs.io/en/latest/index.html) (GCClassic) on [GRICAD/CIMENT](https://gricad-doc.univ-grenoble-alpes.fr/en/hpc/).
+Configuration scripts, environment specs, job script templates, and helper utilities for running [GEOS-Chem Classic](https://geos-chem.readthedocs.io/en/latest/index.html) (GCClassic) on [GRICAD/CIMENT](https://gricad-doc.univ-grenoble-alpes.fr/en/hpc/).
 
 
 To run a simulation
@@ -48,7 +48,7 @@ cd /home/PROJECTS/pr-geoschem/geos-chem-setup
 The setup script:
 
 * Installs [micromamba](https://mamba.readthedocs.io/en/latest/user_guide/micromamba.html)
-* Creates a micromamba environment (`gcclassic-gnu14`) containing the compilers and libraries needed to build and run GCClassic
+* Creates a micromamba environment `gcclassic-gnu14` containing the compilers and libraries needed to build and run GCClassic
 * Clones the GEOS-Chem model code [GCClassic](https://github.com/geoschem/GCClassic) in the shared code dir and checks out the specified version
 * Clones the input data repository [geos-chem-data](https://github.com/IGE-Microplastics/geos-chem-data) in the shared data dir
 * Clones the data managment tool [bashdatacatalog](https://github.com/LiamBindle/bashdatacatalog) in the shared code dir
@@ -76,22 +76,29 @@ micromamba create --file gcclassic-gnu14.yml
 micromamba env export --explicit --name gcclassic-gnu14 > gcclassic-gnu14.lock
 ```
 
+To update list the contents of this repository, use:
+
+```bash
+tree -aF --dirsfirst -I .git/
+```
+
 
 Repository contents
 -------------------
 
 ```
-├── .git/
 ├── jobscripts/
-│   ├── 1_build.sh*       # Example build script
-│   ├── 2_dryrun.sh*      # Example dryrun script
-│   └── 3_run.sh*         # Example simulation script
-├── copy-rundir.sh        # Script to create a new run dir based on an existing one
+│   ├── 1_build.sh*       # Template build script
+│   ├── 2_dryrun.sh*      # Template dryrun script
+│   ├── 3_run.sh*         # Template simulation script
+│   └── download-data.sh* # Template input data download script
+├── compare-rundirs.sh*   # Helper to compare (diff) configuration files between two rundirs
+├── copy-rundir.sh        # Helper to create a new run dir based on an existing one
 ├── gcclassic-gnu14.env   # Activation script for gcclassic-gnu14 environment
 ├── gcclassic-gnu14.lock  # Explicit spec for gcclassic-gnu14 environment
 ├── gcclassic-gnu14.yml   # Loose spec for gcclassic-gnu14 environment
 ├── init-mamba.sh         # Source this script to initialize micromamba
 ├── README.md             # Documentation
 ├── setup.sh*             # Setup script
-└── simulation-guide.md   # Instructrions to set up a new simulation
+└── simulation-guide.md   # Guide to setting up a new simulation
 ```
