@@ -66,7 +66,12 @@ TO_COMPARE=(
 for FILE in "${TO_COMPARE[@]}"
 do
   if [ -f "$DIR1/$FILE" ] && [ -f "$DIR2/$FILE" ]; then
-    git diff --color --color-moved --no-ext-diff --no-index "$DIR1/$FILE" "$DIR2/$FILE"
+    # Use pager for all files; otherwise files with short diff may be hidden
+    echo "=============="
+    echo "Diff of $FILE:"
+    echo "=============="
+    git -c core.pager='less -+F' diff --color --color-moved --no-ext-diff --no-index\
+      "$DIR1/$FILE" "$DIR2/$FILE"
   elif [ -f "$DIR1/$FILE" ] || [ -f "$DIR2/$FILE" ]; then
     if [ ! -f "$DIR1/$FILE" ]; then
       echo "No such file: $DIR1/$FILE"
