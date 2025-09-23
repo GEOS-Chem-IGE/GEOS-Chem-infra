@@ -60,6 +60,11 @@ Edit the `1_build.sh` script if you want to set special [build options](https://
 ```bash
 oarsub -S ./1_build.sh
 ```
+You can verify the status of your created job on OAR with: 
+
+```bash
+oarstat -u <your-perseus-ID>
+```
 
 6. Configure your simulation
 
