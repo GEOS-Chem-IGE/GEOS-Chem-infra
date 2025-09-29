@@ -1,8 +1,5 @@
-```
-title: GEOS-Chem simulation guide
-date: 2025-09-23
-author: Ian Hough, Erfan Jahangir
-```
+GEOS-Chem simulation guide
+==========================
 
 This guide explains how to configure and run a [GEOS-Chem Classic](https://geos-chem.readthedocs.io/en/latest/index.html) (GCClassic) simulation on the [GRICAD/CIMENT](https://gricad-doc.univ-grenoble-alpes.fr/en/hpc/) computing cluster.
 
@@ -418,3 +415,11 @@ Further resources
 * [GEOS-Chem simulation types](https://wiki.seas.harvard.edu/geos-chem/index.php?title=Guide_to_GEOS-Chem_simulations)
 
 * [GRICAD/CIMENT documentation](https://gricad-doc.univ-grenoble-alpes.fr/en/hpc/)
+
+
+About
+-----
+
+Authors: Ian Hough, Erfan Jahangir
+
+Date: 2025-09-23

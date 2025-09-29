@@ -1,8 +1,5 @@
-```
-title: GEOS-Chem setup guide
-date: 2025-04-11
-author: Ian Hough
-```
+GEOS-Chem setup guide
+=====================
 
 Configuration scripts, environment specs, job script templates, and helper utilities for running [GEOS-Chem Classic](https://geos-chem.readthedocs.io/en/latest/index.html) (GCClassic) on [GRICAD/CIMENT](https://gricad-doc.univ-grenoble-alpes.fr/en/hpc/).
 
@@ -105,3 +102,11 @@ Repository contents
 ├── setup.sh*             # Setup script
 └── simulation-guide.md   # Guide to setting up a new simulation
 ```
+
+
+About
+-----
+
+Author: Ian Hough
+
+Date: 2025-04-11
