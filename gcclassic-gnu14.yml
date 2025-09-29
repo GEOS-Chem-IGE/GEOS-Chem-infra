@@ -7,6 +7,9 @@
 # NOTE: This file does not pin package builds or dependencies. To **exactly**
 # reproduce the environment, use the gcclassic-gnu14.lock file:
 #   micromamba create --name gcclassic-gnu14 --file gcclassic-gnu14.lock
+#
+# Author: Ian Hough
+# Date: 2025-07-29
 #===============================================================================
 
 name: gcclassic-gnu14

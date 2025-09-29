@@ -1,5 +1,10 @@
+#===============================================================================
 # Source this script to initialize micromamba:
 #   source init-mamba.sh
+#
+# Author: Ian Hough
+# Date: 2025-01-09
+#===============================================================================
 
 # Use pr-geoschem micromamba binary and environments
 MAMBA_ROOT_PREFIX="/home/PROJECTS/pr-geoschem/micromamba"

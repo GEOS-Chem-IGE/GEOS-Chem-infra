@@ -15,6 +15,9 @@
 #
 # * Sets up a project data dir:
 #   - Clone geos-chem-data (https://github.com/IGE-Microplastics/geos-chem-data)
+#
+# Author: Ian Hough
+# Date: 2025-01-09
 #===============================================================================
 
 #-------------------------------------------------------------------------------

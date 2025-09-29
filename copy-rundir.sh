@@ -7,6 +7,9 @@
 # symlinks (e.g. gcclassic -> ../../build-gcclassic/gcclassic), and run scripts
 # (e.g. run.sh) from an existing run dir to a new dir. It also creates required
 # output subdirs (OutputDir/, Restarts/), possibly as symlinks.
+#
+# Author: Ian Hough
+# Date: 2025-07-29
 #===============================================================================
 
 # Help message

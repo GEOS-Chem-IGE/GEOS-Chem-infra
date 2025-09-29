@@ -3,6 +3,9 @@
 #===============================================================================
 # Submit this script to execute a dryrun:
 #   oarsub -S ./download-data.sh DRY_RUN_LOG [aws|http]
+#
+# Author: Ian Hough
+# Date: 2025-04-11
 #===============================================================================
 
 #OAR -n download-data

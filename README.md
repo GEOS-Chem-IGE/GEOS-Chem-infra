@@ -1,5 +1,8 @@
-geos-chem-setup
-===============
+```
+title: GEOS-Chem setup guide
+date: 2025-04-11
+author: Ian Hough
+```
 
 Configuration scripts, environment specs, job script templates, and helper utilities for running [GEOS-Chem Classic](https://geos-chem.readthedocs.io/en/latest/index.html) (GCClassic) on [GRICAD/CIMENT](https://gricad-doc.univ-grenoble-alpes.fr/en/hpc/).
 

@@ -1,5 +1,8 @@
-Simulation guide
-================
+```
+title: GEOS-Chem simulation guide
+date: 2025-09-23
+author: Ian Hough, Erfan Jahangir
+```
 
 This guide explains how to configure and run a [GEOS-Chem Classic](https://geos-chem.readthedocs.io/en/latest/index.html) (GCClassic) simulation on the [GRICAD/CIMENT](https://gricad-doc.univ-grenoble-alpes.fr/en/hpc/) computing cluster.
 
@@ -60,7 +63,7 @@ Edit the `1_build.sh` script if you want to set special [build options](https://
 ```bash
 oarsub -S ./1_build.sh
 ```
-You can verify the status of your created job on OAR with: 
+You can verify the status of your created job on OAR with:
 
 ```bash
 oarstat -u <your-perseus-ID>
