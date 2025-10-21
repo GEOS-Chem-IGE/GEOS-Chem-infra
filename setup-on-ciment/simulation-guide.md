@@ -21,21 +21,22 @@ Quickstart
 
 Once you are familiar with running GCClassic on GRICAD/CIMENT you can follow these steps to prepare and execute a new simulation. For your first simulation, follow the detailed [setup guide](#setup) below.
 
-1. Use the `createRunDir.sh` script of your desired GCClassic version to create a new run directory in `/home/PROJECTS/pr-geoschem/<your-research-dir>`:
+1. Use the `createRunDir.sh` script of your desired GCClassic version to create a new run directory in `/home/PROJECTS/pr-geoschem/<your-username>`:
 
 ```bash
 # You must execute createRunDir.sh from its parent directory
-cd /home/PROJECTS/pr-geoschem/GCClassic-14.5.0/run
+cd /home/PROJECTS/pr-geoschem/<your-username>/<gcclassic-dir>/run
 ./createRunDir.sh
 ```
 
-2. In the new run directory, replace `OutputDir` with a symlink to a new dir on `/bettik`:
+2. In the new run directory, replace `OutputDir` and `Restarts` with symlinks to new dirs on `/bettik`:
 
 ```bash
-mkdir /bettik/PROJECTS/pr-geoschem/<your-username>/<new-run-dir>
-cd /home/PROJECTS/pr-geoschem/<your-research-dir>/<new-run-dir>
-rmdir OutputDir
-ln -s /bettik/PROJECTS/pr-geoschem/<your-username>/<new-output-dir> .
+mkdir -p /bettik/PROJECTS/pr-geoschem/<your-username>/<new-run-dir>/OutputDir
+mkdir -p /bettik/PROJECTS/pr-geoschem/<your-username>/<new-run-dir>/Restarts
+cd /home/PROJECTS/pr-geoschem/<your-username>/<new-run-dir>
+rmdir OutputDir Restarts
+ln -s /bettik/PROJECTS/pr-geoschem/<your-username>/<new-output-dir>/* .
 ```
 
 3. Copy the environment activation script:
