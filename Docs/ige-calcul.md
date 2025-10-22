@@ -39,3 +39,4 @@ Then, add this public key to GitHub by following the steps described below.
 5- Click Add SSH key to save.
 ## Geos-chem settup 
 This will contain the same explanations used for Dahu, with some modifications, especially for the input and output data in the scratch part of the summer shared storage.
+## Requesting a Slurm account
