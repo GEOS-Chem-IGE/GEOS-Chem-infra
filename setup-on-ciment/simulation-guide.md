@@ -313,7 +313,7 @@ Create the run directory in the subdirectory you created in step 3:
 -----------------------------------------------------------
 Enter path where the run directory will be created:
 -----------------------------------------------------------
->>> /home/PROJECTS/pr-geoschem/<your-research-dir>
+>>> /home/PROJECTS/pr-geoschem/<your-username>
 ```
 
 Use the default run directory name:
@@ -351,7 +351,7 @@ mkdir <new-output-dir>
 Now return to your run directory and replace the `OutputDir` directory with a symlink to the new output directory on `/bettik`:
 
 ```bash
-cd /home/PROJECTS/pr-geoschem/<your-research-dir>/<new-run-dir>
+cd /home/PROJECTS/pr-geoschem/<your-username>/<new-run-dir>
 rmdir OutputDir
 ln -s /bettik/PROJECTS/pr-geoschem/<your-username>/<new-output-dir> OutputDir
 ```
