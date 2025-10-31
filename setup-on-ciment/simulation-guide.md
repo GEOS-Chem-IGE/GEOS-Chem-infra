@@ -130,14 +130,13 @@ You should store your simulation configurations in a subdirectory of the `pr-geo
 
 ### 3. Create a subdirectory for your simulations
 
-Within the `pr-geoschem` directory, create a new subdirectory to store the configuration and output of your simulations. Name the subdirectory with your username or a brief description of your research topic (e.g. `plastics` contains simulations related to atmospheric microplastic cycling).
-
+Within the `pr-geoschem` directory, create a new subdirectory to store the configuration and output of your simulations. Name the subdirectory with your username.
 Example:
 
 ```bash
 cd /home/PROJECTS/pr-geoschem
-mkdir <your-research-dir>  # replace <your-research-dir> with your chosen name
-cd <your-research-dir>
+mkdir <your-username> 
+cd <your-username>
 ```
 
 Please add a `README.md` file in this directory with a brief description of your research topic and a list of the people working on it.
@@ -202,7 +201,7 @@ You will be prompted with a series of questions to configure the run directory:
 
 #### Configure input data and register as a GEOS-Chem user
 
-If this is the first time you have created a run directory, you will be prompted to enter the path to the `ExtData` directory that contains input data for GEOS-Chem (meteorology, emissions, etc.). Enter `/bettik/PROJECTS/pr-geoschem/COMMON/geos-chem-data/ExtData`:
+If this is the first time you have created a run directory, you will be prompted to enter the path to the `ExtData` directory that contains input data for GEOS-Chem (meteorology, emissions, etc.). Enter `/summer/COMMON//geos-chem-data/ExtData`:
 
 ```
 -----------------------------------------------------------
@@ -211,7 +210,7 @@ This will be stored in /home/houghi/.geoschem/config for future automatic use.
 -----------------------------------------------------------
 Enter path for ExtData:
 -----------------------------------------------------------
->>> /bettik/PROJECTS/pr-geoschem/COMMON/geos-chem-data/ExtData
+>>> /summer/geoschem/COMMON/ExtData
 ```
 
 Then follow the prompts to register as a new GEOS-Chem user.
@@ -395,7 +394,7 @@ You can now follow the GCClassic user guide steps to:
 1. [Compile the code](https://geos-chem.readthedocs.io/en/stable/gcclassic-user-guide/compile.html)
 2. [Configure your simulation](https://geos-chem.readthedocs.io/en/stable/gcclassic-user-guide/config-overview.html)
 3. [Test your configuration with a dry-run simulation](https://geos-chem.readthedocs.io/en/stable/gcclassic-user-guide/dry-run-run.html)
-4. [Download any missing input data identified by the dry-run simulation](https://geos-chem.readthedocs.io/en/stable/gcclassic-user-guide/dry-run-download.html) (for this test simulation, the required data should already be in the input data directory `/bettik/PROJECTS/pr-geoschem/COMMON/geos-chem-data/ExtData`).
+4. [Download any missing input data identified by the dry-run simulation](https://geos-chem.readthedocs.io/en/stable/gcclassic-user-guide/dry-run-download.html) (for this test simulation, the required data should already be in the input data directory `/summer/geoschem/COMMON/ExtData`).
 5. [Run a simulation](https://geos-chem.readthedocs.io/en/stable/gcclassic-user-guide/run.html)
 
 > [!IMPORTANT]
