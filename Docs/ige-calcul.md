@@ -37,6 +37,26 @@ Then, add this public key to GitHub by following the steps described below.
 4- Paste your public SSH key into the field provided.
 
 5- Click Add SSH key to save.
-## Geos-chem settup 
-This will contain the same explanations used for Dahu, with some modifications, especially for the input and output data in the scratch part of the summer shared storage.
-## Requesting a Slurm account
+## Geos-chem settup on Ige-calcul
+≈This will contain the same explanations used for Dahu, with some modifications, especially for the input and output data in the scratch part of the summer shared storage.
+### Git clone into you repertory
+### Create rundir 
+You must execute createRunDir.sh from its parent directory
+cd /home/PROJECTS/pr-geoschem/<your-username>/<gcclassic-dir>/run
+./createRunDir.sh
+by running this you must precise the input data ExtData on summer
+for the ouputs you precise 
+### The input Data 
+The ext data is available through 
+```
+/mnt/summer/geoschem/COMMON/ExtData
+```
+### The output Data
+The outputs will be saved on your workdir space. It would be appreciated if you add a readme of your project in this directory. 
+### Requesting a Slurm account
+You must require a slurm account to be able to run the jobscripts via the slurm on ige-calcul servers. 
+### Build the executables 
+Head trough your build directory in : 
+```bash
+/workdir2/chianti/<your-username>/
+```
