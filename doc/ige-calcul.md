@@ -23,17 +23,24 @@ and never say yes in the answer of this quesstion because this may disrupt the f
 
 
 must precise the input data ExtData on summer
-for the ouputs you precise 
 ### The input Data 
 The ext data is available through 
 ```
 /mnt/summer/geoschem/COMMON/ExtData
 ```
+
+
+
 ### The output Data
 The outputs will be saved on your workdir space. It would be appreciated if you add a readme of your project in this directory. 
 ### Requesting a Slurm account
-You must require a slurm account to be able to run the jobscripts via the slurm on ige-calcul servers. 
+You must require the ige-caclul admins to create you a slurm account to be able to run the jobscripts via the slurm on ige-calcul servers. 
 ### Build the executables 
+Copy the job script templates:
+
+```bash
+cp -iv /home/PROJECTS/pr-geoschem/geos-chem-setup/jobscripts/*.sh .
+```
 Head trough your build directory in : 
 ```bash
 /workdir2/chianti/<your-username>/
