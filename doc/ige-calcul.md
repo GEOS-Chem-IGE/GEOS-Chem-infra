@@ -5,7 +5,7 @@
 ### Create rundir 
 You must execute createRunDir.sh redirecting into its parent directory
 ```bash
-cd /home/workdir/chianti/<your-username>/<gcclassic-dir>/run
+cd /workdir/chianti/<your-username>/<gcclassic-dir>/run
 ./createRunDir.sh
 ```
 by running this, you will be inquired about the simulation type, grid resolution, meteorology source, and number of vertical levels. It will also ask you where you want to store your run directory which sould be 
