@@ -141,7 +141,7 @@ cd <your-username>
 
 Please add a `README.md` file in this directory with a brief description of your research topic and a list of the people working on it.
 
-### 4. Optional: clone a specific version of the GEOS-Chem Classic code
+### 4. Clone a specific version of the GEOS-Chem Classic code
 
 If you want to run a specific version of GEOS-Chem Classic that is not already in the `pr-geoschem` directory, you will need to clone the official [GCClassic repository](https://github.com/geoschem/GCClassic) and checkout the desired release.
 
@@ -201,7 +201,7 @@ You will be prompted with a series of questions to configure the run directory:
 
 #### Configure input data and register as a GEOS-Chem user
 
-If this is the first time you have created a run directory, you will be prompted to enter the path to the `ExtData` directory that contains input data for GEOS-Chem (meteorology, emissions, etc.). Enter `/summer/COMMON/geoschem/ExtData`:
+If this is the first time you have created a run directory, you will be prompted to enter the path to the `ExtData` directory that contains input data for GEOS-Chem (meteorology, emissions, etc.). Enter `/summer/geoschem/COMMON/ExtData`:
 
 ```
 -----------------------------------------------------------
