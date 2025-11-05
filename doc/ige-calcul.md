@@ -19,7 +19,7 @@ You will be then inquired about the simulation type, grid resolution, meteorolog
 ```bash
 /workdir2/chianti/<your-username>/<rundir name>
 ```
-For the rundir name if you put nothing the default name will be ```<resolution><meteorological data> <simulation type>``` for example "gc_4x5_merra2_fullchem".
+For the rundir name if you put nothing the default name will be ```<resolution><meteorological data><simulation type>``` for example "gc_4x5_merra2_fullchem".
 >[!Note] : If you enter a wrong directory you will be asked the following question: 
 ```bash
 Warning: <your wrong directory> does not exist,
@@ -29,6 +29,8 @@ Would you like to make this directory? (y/n/q)
 and never say yes in the answer of this question because this may disrupt the file orginsation on ige-calcuel. 
 
 
+### Build and run
+Copy the job script templates from GEOS-Chem-infra/run/ige-calcul/build.run
 
 
 
