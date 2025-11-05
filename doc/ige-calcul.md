@@ -8,26 +8,28 @@ You must execute createRunDir.sh redirecting into its parent directory
 cd /workdir/chianti/<your-username>/<gcclassic-dir>/run
 ./createRunDir.sh
 ```
-by running this, you will be inquired about the simulation type, grid resolution, meteorology source, and number of vertical levels. It will also ask you where you want to store your run directory which sould be 
+#### Only for first Time run
+By running this command, If this is the first time you have created a run directory, you will be prompted to enter the path to the `ExtData` directory that contains input data for GEOS-Chem (meteorology, emissions, etc.). Enter `/mnt/summer/geoschem/COMMON/ExtData`.
+
+You will then be asked to provide an email,name,your research affiliation, and a brief description of what you plan to do with Geos-Chem.
+
+#### Normal run
+
+You will be then inquired about the simulation type, grid resolution, meteorology source, and number of vertical levels. It will also ask you where you want to store your run directory which sould be 
 ```bash
 /workdir2/chianti/<your-username>/<rundir name>
 ```
 For the rundir name if you put nothing the default name will be ```<resolution><meteorological data> <simulation type>``` for example "gc_4x5_merra2_fullchem".
-Attention : If you enter a wrong directory you will be asked the following question: 
+>[!Note] : If you enter a wrong directory you will be asked the following question: 
 ```bash
 Warning: <your wrong directory> does not exist,
 but the parent directory does.
 Would you like to make this directory? (y/n/q) 
 ```
-and never say yes in the answer of this quesstion because this may disrupt the file orginsation on ige-calcuel. 
+and never say yes in the answer of this question because this may disrupt the file orginsation on ige-calcuel. 
 
 
-must precise the input data ExtData on summer
-### The input Data 
-The ext data is available through 
-```
-/mnt/summer/geoschem/COMMON/ExtData
-```
+
 
 
 
