@@ -1,5 +1,7 @@
 # Running Geos-chem on the IGE Calcul server
 
+Upon your registration on agalan you may have a directory with your family name and the first part of you name under : ```
+/workdir/chianti/``` This is where you should clone the GEOSCHEM. 
 
 ### Git clone into you repertory
 ### Create rundir 
@@ -44,7 +46,7 @@ Warning: <your wrong directory> does not exist,
 but the parent directory does.
 Would you like to make this directory? (y/n/q) 
 ```
-and never say yes in the answer of this question because this may disrupt the file orginsation on ige-calcuel. 
+Do not answer yes, because this may disrupt the file orginsation on ige-calcuel. 
 
 
 ### Build and run
@@ -54,7 +56,7 @@ Copy the job script templates from GEOS-Chem-infra/run/ige-calcul/build.run
 
 
 ### The output Data
-The outputs will be saved on your workdir space. It would be appreciated if you add a readme of your project in this directory. 
+The outputs will be saved on your workdir space. It is recommamnded that you add a readme of your project in this directory. 
 ### Requesting a Slurm account
 You must require the ige-caclul admins to create you a slurm account to be able to run the jobscripts via the slurm on ige-calcul servers. 
 ### Build the executables 
