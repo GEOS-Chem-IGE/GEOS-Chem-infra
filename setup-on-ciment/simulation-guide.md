@@ -201,7 +201,7 @@ You will be prompted with a series of questions to configure the run directory:
 
 #### Configure input data and register as a GEOS-Chem user
 
-If this is the first time you have created a run directory, you will be prompted to enter the path to the `ExtData` directory that contains input data for GEOS-Chem (meteorology, emissions, etc.). Enter `/summer/COMMON//geos-chem-data/ExtData`:
+If this is the first time you have created a run directory, you will be prompted to enter the path to the `ExtData` directory that contains input data for GEOS-Chem (meteorology, emissions, etc.). Enter `/summer/COMMON/geoschem/ExtData`:
 
 ```
 -----------------------------------------------------------
