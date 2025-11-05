@@ -8,19 +8,37 @@ You must execute createRunDir.sh redirecting into its parent directory
 cd /workdir/chianti/<your-username>/<gcclassic-dir>/run
 ./createRunDir.sh
 ```
-#### Only for first Time run
-By running this command, If this is the first time you have created a run directory, you will be prompted to enter the path to the `ExtData` directory that contains input data for GEOS-Chem (meteorology, emissions, etc.). Enter `/mnt/summer/geoschem/COMMON/ExtData`.
+#### Only for the first time run
+By running this command, If this is the first time you have created a run directory, you will be prompted to enter the path to the `ExtData` directory that contains input data for GEOS-Chem (meteorology, emissions, etc.). Enter 
+```bash
+/mnt/summer/geoschem/COMMON/ExtData
+```
 
-You will then be asked to provide an email,name,your research affiliation, and a brief description of what you plan to do with Geos-Chem.
+You will then be asked to provide an email, your name and research affiliation, and a brief description of what you plan to do with Geos-Chem.
 
 #### Normal run
 
-You will be then inquired about the simulation type, grid resolution, meteorology source, and number of vertical levels. It will also ask you where you want to store your run directory which sould be 
+You will be then inquired about the simulation type, grid resolution, meteorology source, and number of vertical levels. For each question you can write the number of option you desire to choose. e.g.
+for meteorolgy source:
+```
+-----------------------------------------------------------
+Choose meteorology source:
+-----------------------------------------------------------
+  1. MERRA-2 (Recommended)
+  2. GEOS-FP
+  3. GEOS-IT (Beta release)
+  4. GISS ModelE2.1 (GCAP 2.0)
+>>> 1
+```
+when you write 1 it will choose the firest option--> MERRA-2.
+
+Finally you will be asked about where you want to store your run directory which sould be :
 ```bash
 /workdir2/chianti/<your-username>/<rundir name>
 ```
 For the rundir name if you put nothing the default name will be ```<resolution><meteorological data><simulation type>``` for example "gc_4x5_merra2_fullchem".
->[!Note] : If you enter a wrong directory you will be asked the following question: 
+>[!Note]  
+>If you enter a wrong directory you will be asked the following question: 
 ```bash
 Warning: <your wrong directory> does not exist,
 but the parent directory does.
