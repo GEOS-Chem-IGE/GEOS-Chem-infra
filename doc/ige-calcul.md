@@ -1,5 +1,7 @@
 # Running Geos-chem on the IGE Calcul server
 
+Upon your registration on agalan you may have a directory with your family name and the first part of you name under : ```
+/workdir/chianti/``` This is where you should clone the GEOSCHEM. 
 
 ### Git clone into you repertory
 ### Create rundir 
@@ -8,31 +10,53 @@ You must execute createRunDir.sh redirecting into its parent directory
 cd /workdir/chianti/<your-username>/<gcclassic-dir>/run
 ./createRunDir.sh
 ```
-by running this, you will be inquired about the simulation type, grid resolution, meteorology source, and number of vertical levels. It will also ask you where you want to store your run directory which sould be 
+#### Only for the first time run
+By running this command, If this is the first time you have created a run directory, you will be prompted to enter the path to the `ExtData` directory that contains input data for GEOS-Chem (meteorology, emissions, etc.). Enter 
+```bash
+/mnt/summer/geoschem/COMMON/ExtData
+```
+
+You will then be asked to provide an email, your name and research affiliation, and a brief description of what you plan to do with Geos-Chem.
+
+#### Normal run
+
+You will be then inquired about the simulation type, grid resolution, meteorology source, and number of vertical levels. For each question you can write the number of option you desire to choose. e.g.
+for meteorolgy source:
+```
+-----------------------------------------------------------
+Choose meteorology source:
+-----------------------------------------------------------
+  1. MERRA-2 (Recommended)
+  2. GEOS-FP
+  3. GEOS-IT (Beta release)
+  4. GISS ModelE2.1 (GCAP 2.0)
+>>> 1
+```
+when you write 1 it will choose the firest option--> MERRA-2.
+
+Finally you will be asked about where you want to store your run directory which sould be :
 ```bash
 /workdir2/chianti/<your-username>/<rundir name>
 ```
-For the rundir name if you put nothing the default name will be ```<resolution><meteorological data> <simulation type>``` for example "gc_4x5_merra2_fullchem".
-Attention : If you enter a wrong directory you will be asked the following question: 
+For the rundir name if you put nothing the default name will be ```<resolution><meteorological data><simulation type>``` for example "gc_4x5_merra2_fullchem".
+>[!Note]  
+>If you enter a wrong directory you will be asked the following question: 
 ```bash
 Warning: <your wrong directory> does not exist,
 but the parent directory does.
 Would you like to make this directory? (y/n/q) 
 ```
-and never say yes in the answer of this quesstion because this may disrupt the file orginsation on ige-calcuel. 
+Do not answer yes, because this may disrupt the file orginsation on ige-calcuel. 
 
 
-must precise the input data ExtData on summer
-### The input Data 
-The ext data is available through 
-```
-/mnt/summer/geoschem/COMMON/ExtData
-```
+### Build and run
+Copy the job script templates from GEOS-Chem-infra/run/ige-calcul/build.run
+
 
 
 
 ### The output Data
-The outputs will be saved on your workdir space. It would be appreciated if you add a readme of your project in this directory. 
+The outputs will be saved on your workdir space. It is recommamnded that you add a readme of your project in this directory. 
 ### Requesting a Slurm account
 You must require the ige-caclul admins to create you a slurm account to be able to run the jobscripts via the slurm on ige-calcul servers. 
 ### Build the executables 
