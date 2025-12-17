@@ -7,7 +7,7 @@ This repository contains software infrastructure to run the [GEOS-Chem](https://
 Contents
 --------
 
-* [doc](doc/): documentation and tutorials
+* [doc](doc/): documentation and tutorials for installation and running GEOS-Chem on [dahu](https://github.com/GEOS-Chem-IGE/GEOS-Chem-infra/blob/issue14/update-readme/doc/dahu-ciment.md) and [ige-calcul] servers. 
 
 
 Contact
