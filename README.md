@@ -9,8 +9,10 @@ Contents
 
 * [doc](doc/): documentation and tutorials for installation and running GEOS-Chem on [Dahu (GRICAD)](https://github.com/GEOS-Chem-IGE/GEOS-Chem-infra/blob/issue14/update-readme/doc/dahu-ciment.md) and [IGE-Calcul (internal IGE server)] servers. 
 
-* [data](data/): The input data required for GEOS-Chem simulations are pre-loaded on the ```summer```volume. The contents of data allows users to update or supplement the list of currently available inputs. If necessary, additional data can be downloaded by following the instructions provided at [GEOS-Chem documentation](https://geos-chem.readthedocs.io/en/stable/gcclassic-user-guide/download-data.html).
-* 
+* [data](data/): The input data required for GEOS-Chem simulations are loaded on the ```summer```volume. The contents of ```data``` directory allows users to update or supplement the list of currently available inputs. If necessary, additional data can be downloaded by following the instructions provided at [GEOS-Chem documentation](https://geos-chem.readthedocs.io/en/stable/gcclassic-user-guide/download-data.html).
+
+* [run](run/): all required scripts to run a GEOS-Chem simulation on [Dahu (GRICAD)](https://github.com/GEOS-Chem-IGE/GEOS-Chem-infra/tree/issue14/update-readme/run/dahu-ciment) and [IGE-Calcul](the https://github.com/GEOS-Chem-IGE/GEOS-Chem-infra/tree/issue14/update-readme/run/dahu-ciment) .
+
 
 Contact
 -------
