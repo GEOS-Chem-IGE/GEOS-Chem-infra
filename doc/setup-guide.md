@@ -82,7 +82,7 @@ Edit the `1_build.sh` script if you want to set special [build options](https://
 > The link above points to the documentation for the latest stable version of GCClassic. If you are using an older version, click on the black box in the bottom right corner of the page to select the documentation for the GCClassic version that you are using.
 
 ```bash
-<> -S ./1_build.sh
+<jub-submission-command> -S ./1_build.sh
 ```
 You can verify the status of your created job on OAR with:
 
@@ -97,7 +97,7 @@ Edit `geoschem_config.yml`, `HEMCO_Config.rc`, `HISTORY.rc`, etc. as needed. See
 7. Execute a dry run:
 
 ```bash
-oarsub -S ./2_dryrun.sh
+<job-submission-command> ./2_dryrun.sh
 ```
 
 8. Download any missing input data:
@@ -105,7 +105,7 @@ oarsub -S ./2_dryrun.sh
 If you need to download a large volume of data, edit `download-data.sh` to increase the walltime.
 
 ```
-oarsub -S ./download-data.sh
+<job-submission-command> ./download-data.sh
 ```
 
 9. Run your simulation
@@ -114,7 +114,7 @@ oarsub -S ./download-data.sh
 > First edit `3_run.sh` to configure an appropriate job walltime (the default is 8 hours). Note that 48 hours is the maximum allowed walltime. See the [GRICAD/CIMENT documentation](https://gricad-doc.univ-grenoble-alpes.fr/en/hpc/joblaunch/job_management/) for details.
 
 ```bash
-oarsub -S ./3_run.sh
+<job-submission-command> ./3_run.sh
 ```
 
 
