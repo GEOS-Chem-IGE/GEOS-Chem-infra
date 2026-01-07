@@ -1,39 +1,57 @@
 GEOS-Chem simulation guide
 ==========================
 
-This guide explains how to configure and run a [GEOS-Chem Classic](https://geos-chem.readthedocs.io/en/latest/index.html) (GCClassic) simulation on the [GRICAD/CIMENT](https://gricad-doc.univ-grenoble-alpes.fr/en/hpc/) or [ige-calcul] (https://ige-intranet.osug.fr/spip.php?rubrique157) computing cluster.
-
+This guide explains how to configure and run a [GEOS-Chem Classic](https://geos-chem.readthedocs.io/en/latest/index.html) (GCClassic) simulation on the [GRICAD/CIMENT](https://gricad-doc.univ-grenoble-alpes.fr/en/hpc/) and [ige-calcul](https://ige-intranet.osug.fr/spip.php?rubrique157) computing cluster.
 
 
 Prerequisites
 -------------
 <details>
-     <summary>GRICAD/CIMENT</summary>
-        1. You must have a PERSEUS account to access the GRICAD/CIMENT computing cluster. You can request an account at [perseus.univ-grenoble-alpes.fr](https://perseus.univ-grenoble-alpes.fr/).\
-        2. You must be a member of the `pr-geoschem` project. Request to join the project [in PERSEUS](https://perseus.univ-grenoble-alpes.fr/my-projects/join-project).
+     <summary>For GRICAD/CIMENT</summary>
+     
+1. You must have a PERSEUS account to access the GRICAD/CIMENT computing cluster. You can request an account at [perseus.univ-grenoble-alpes.fr](https://perseus.univ-grenoble-alpes.fr/).
+2. You must be a member of the `pr-geoschem` project. Request to join the project [in PERSEUS](https://perseus.univ-grenoble-alpes.fr/my-projects/join-project).
+
 </details>
 
+## The required directories for each of the plaeforms must be defined here!
+<details>
+     <summary>For Ige-calcul</summary>
+     
+1- You must have a Agalan account. 
+2- You must require the ige-caclul admins [here](https://geos-chem.readthedocs.io/en/latest/index.html) to create you a slurm account to be able to run the jobscripts via the slurm on ige-calcul servers. 
 
+</details>
 
 You should also have a basic familiarity with the unix command line and git. Many guides available online; here are two from [The Carpentries](https://carpentries.org/):
 
 * [Introduction to Unix](https://swcarpentry.github.io/shell-novice/)
 * [Introduction to Git](https://swcarpentry.github.io/git-novice/)
 
+## The job-submission commands are different for platforms
+rundirpath and outputdir may vary regarding the used platform
+for Dahu/Ciment 
+`$RUNDIRPATH=/home/PROJECTS/pr-geoschem/<your-username>`
 
+where <your-username> is your perseus account username
+for ige-calcul: 
+`$RUNDIRPATH`
+where username is 
 Quickstart
 ----------
 
 Once you are familiar with running GCClassic on GRICAD/CIMENT you can follow these steps to prepare and execute a new simulation. For your first simulation, follow the detailed [setup guide](#setup) below.
 
-1. Use the `createRunDir.sh` script of your desired GCClassic version to create a new run directory in `/home/PROJECTS/pr-geoschem/<your-username>`:
+1. Use the `createRunDir.sh` script of your desired GCClassic version to create a new run directory in `$RUNDIRPATH`
+   `/home/PROJECTS/pr-geoschem/<your-username>`:
 
 ```bash
 # You must execute createRunDir.sh from its parent directory
 cd /home/PROJECTS/pr-geoschem/<your-username>/<gcclassic-dir>/run
 ./createRunDir.sh
 ```
-
+> [!NOTE]
+>The Ige-calcule users can skip step 2 and 3. 
 2. In the new run directory, replace `OutputDir` and `Restarts` with symlinks to new dirs on `/bettik`:
 
 ```bash
@@ -53,7 +71,7 @@ cp -iv /home/PROJECTS/pr-geoschem/geos-chem-setup/gcclassic-gnu14.env .
 4. Copy the job script templates:
 
 ```bash
-cp -iv /home/PROJECTS/pr-geoschem/geos-chem-setup/jobscripts/*.sh .
+cp -iv /home/PROJECTS/pr-geoschem/geos-chem-setup/run/*.sh .
 ```
 
 5. Build the code:
@@ -64,7 +82,7 @@ Edit the `1_build.sh` script if you want to set special [build options](https://
 > The link above points to the documentation for the latest stable version of GCClassic. If you are using an older version, click on the black box in the bottom right corner of the page to select the documentation for the GCClassic version that you are using.
 
 ```bash
-oarsub -S ./1_build.sh
+<> -S ./1_build.sh
 ```
 You can verify the status of your created job on OAR with:
 
