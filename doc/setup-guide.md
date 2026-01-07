@@ -3,12 +3,7 @@ GEOS-Chem simulation guide
 
 This guide explains how to configure and run a [GEOS-Chem Classic](https://geos-chem.readthedocs.io/en/latest/index.html) (GCClassic) simulation on the [GRICAD/CIMENT](https://gricad-doc.univ-grenoble-alpes.fr/en/hpc/) or [ige-calcul] (https://ige-intranet.osug.fr/spip.php?rubrique157) computing cluster.
 
-<details>
-  <summary>Click here to see the secret!</summary>
-  
-  ### Surprise! 
-  This content was hidden. You can put images, tables, or long logs here to keep your README clean.
-</details>
+
 
 Prerequisites
 -------------
