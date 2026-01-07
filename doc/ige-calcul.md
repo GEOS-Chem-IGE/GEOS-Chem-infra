@@ -1,7 +1,7 @@
 # Running Geos-chem on the IGE Calcul server
 
-Upon your registration on agalan you may have a directory with your family name and the first part of you name under : ```
-/workdir/chianti/``` This is where you should clone the GEOSCHEM. 
+To run GEOS-Chem on ige-calcul, you must first have an agalan account. Once you have registered, a directory will be created for you at ```
+/workdir/chianti/``` using your surname and the first letter of your first name. This is the location where you should clone the actuel Git reposetory."
 
 ### Git clone into you repertory
 ### Create rundir 
