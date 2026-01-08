@@ -28,11 +28,11 @@ You should also have a basic familiarity with the unix command line and git. Man
 * [Introduction to Git](https://swcarpentry.github.io/git-novice/)
 
 ## Common settings for both platforms
--The repository should be cloned in `$WORKDIR`.
--The input data are located in `$INPUTDIR`.
--Jobs are executed and outputs are saved in `$OUTPUTDIR`.
 
--The `job-submission-command` may vary depending on the platform used.
+-The repository should be cloned in `$WORKDIR`.\
+-The input data are located in `$INPUTDIR`.\
+-Jobs are executed and outputs are saved in `$OUTPUTDIR`.\
+-The `job-submission-command` may vary depending on the platform used.\
 The values of these variables for each platform are listed below.
  
 <details>
