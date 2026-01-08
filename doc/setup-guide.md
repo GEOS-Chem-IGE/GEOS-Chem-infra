@@ -88,7 +88,7 @@ cp -iv /home/PROJECTS/pr-geoschem/geos-chem-setup/gcclassic-gnu14.env .
 4. Copy the job script templates:
 
 ```bash
-cp -iv /home/PROJECTS/pr-geoschem/geos-chem-setup/run/*.sh .
+cp -iv $WORKDIR/GEOS-Chem-infra/run/*.sh .
 ```
 
 5. Build the code:
@@ -99,12 +99,12 @@ Edit the `1_build.sh` script if you want to set special [build options](https://
 > The link above points to the documentation for the latest stable version of GCClassic. If you are using an older version, click on the black box in the bottom right corner of the page to select the documentation for the GCClassic version that you are using.
 
 ```bash
-<jub-submission-command> -S ./1_build.sh
+<jub-submission-command> ./1_build.sh
 ```
 You can verify the status of your created job on OAR with:
 
 ```bash
-oarstat -u <your-perseus-ID>
+oarstat -u <your-ID>
 ```
 
 6. Configure your simulation
