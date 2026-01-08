@@ -28,11 +28,11 @@ You should also have a basic familiarity with the unix command line and git. Man
 * [Introduction to Git](https://swcarpentry.github.io/git-novice/)
 
 ## Common settings for both platforms
--The repository should be cloned in $WORKDIR.
--The input data are located in $INPUTDIR.
--Jobs are executed and outputs are saved in $OUTPUTDIR.
+-The repository should be cloned in `$WORKDIR`.
+-The input data are located in `$INPUTDIR`.
+-Jobs are executed and outputs are saved in `$OUTPUTDIR`.
 
--The job-submission command (<job-submission-command>) may vary depending on the platform used.
+-The `job-submission-command` may vary depending on the platform used.
 The values of these variables for each platform are listed below.
  
 <details>
@@ -51,6 +51,7 @@ The `$OUTPUTDIR` is defined later for dahu.
 `$OUTPUTDIR=/workdir2/chianti/ige-username/`
 where the `<ige-username>`is generally your surname and the first letter of your first name created once you have an Agalan account. 
 `$WORKPATH=/workdir/chianti/ige-username/Out`
+
 </details>
 
 Quickstart
@@ -178,9 +179,9 @@ Here are some of the subdirectories:
 You should store your simulation configurations in a subdirectory of the `pr-geoschem` project folder.
 -->
 
-### 3. Create a subdirectory for your simulations
+### 2. Create a subdirectory for your simulations
 
-Within the `pr-geoschem` directory, create a new subdirectory to store the configuration and output of your simulations. Name the subdirectory with your username.
+Within the `$WORKDIR` directory, create a new subdirectory to store the configuration and output of your simulations. Name the subdirectory with your username.
 Example:
 
 ```bash
@@ -251,7 +252,7 @@ You will be prompted with a series of questions to configure the run directory:
 
 #### Configure input data and register as a GEOS-Chem user
 
-If this is the first time you have created a run directory, you will be prompted to enter the path to the `ExtData` directory that contains input data for GEOS-Chem (meteorology, emissions, etc.). Enter `/summer/geoschem/COMMON/ExtData`:
+If this is the first time you have created a run directory, you will be prompted to enter the path to the `ExtData` directory that contains input data for GEOS-Chem (meteorology, emissions, etc.). Enter the `$INPUTDATA` regarding the plateform you use. For example in Dahu:
 
 ```
 -----------------------------------------------------------
@@ -362,7 +363,7 @@ Create the run directory in the subdirectory you created in step 3:
 -----------------------------------------------------------
 Enter path where the run directory will be created:
 -----------------------------------------------------------
->>> /home/PROJECTS/pr-geoschem/<your-username>
+>>> $WORKPATH/<your-username>
 ```
 
 Use the default run directory name:
@@ -388,7 +389,10 @@ You can answer `y` even if you do not intend to use git to track your simulation
 
 ### 6. Configure the output directory
 
-Your new run directory contains a subdirectory `OutputDir` where all model output will be saved. Since the output may include many or large files, you should not keep it on the `/home` volume but rather on the `/bettik` volume that is dedicated to (temporary) data storage.
+Your new run directory contains a subdirectory `OutputDir` where all model output will be saved. Since the output may include many or large files, you should not keep it on the `/home` volume but rather on a volume that is dedicated to (temporary) data storage.
+
+<details>
+     <summary>For Dahu-CIMENT</summary>
 
 Navigate to your personal directory in the `pr-geoschem` project on the `/bettik` volume and create a new directory to hold your simulation output. You probably want to include the run directory name in this directory's name to facilitate identification.
 
@@ -404,7 +408,14 @@ cd /home/PROJECTS/pr-geoschem/<your-username>/<new-run-dir>
 rmdir OutputDir
 ln -s /bettik/PROJECTS/pr-geoschem/<your-username>/<new-output-dir> OutputDir
 ```
+<details>
 
+<details>
+     <summary>For Ige-Calcul</summary>
+
+In `Ige-calcul`, there is no temporary volume. However there is a space that is on summer and for the instance we are using it as our `$OUTPUTDIR`:
+
+     
 ### 7. Configure the run environment
 
 The `pr-geoschem` project contains an environment constructed with [micromamba](https://mamba.readthedocs.io/en/latest/user_guide/micromamba.html) that includes all the external compilers and libraries needed to build and run GEOS-Chem Classic (see the [GCClassic documentation](https://geos-chem.readthedocs.io/en/stable/getting-started/system-req-soft.html) for details). You will need to activate this environment and set some environment variables whenever you build GEOS-Chem or run a simulation. The script `/home/PROJECTS/pr-geoschem/geos-chem-setup/gcclassic-gnu14.env` will do this automatically. To make it easy to run this script, you should copy it into your run directory:
