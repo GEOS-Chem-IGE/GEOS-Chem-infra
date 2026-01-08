@@ -14,7 +14,6 @@ Prerequisites
 
 </details>
 
-## The required directories for each of the plaeforms must be defined here!
 <details>
      <summary>For Ige-calcul</summary>
      
@@ -28,21 +27,38 @@ You should also have a basic familiarity with the unix command line and git. Man
 * [Introduction to Unix](https://swcarpentry.github.io/shell-novice/)
 * [Introduction to Git](https://swcarpentry.github.io/git-novice/)
 
-## The job-submission commands are different for platforms
-rundirpath and outputdir may vary regarding the used platform
-for Dahu/Ciment 
-`$RUNDIRPATH=/home/PROJECTS/pr-geoschem/<your-username>`
+## Common settings for both platforms
+-The repository should be cloned in $WORKDIR.
+-The input data are located in $INPUTDIR.
+-Jobs are executed and outputs are saved in $OUTPUTDIR.
 
+-The job-submission command (<job-submission-command>) may vary depending on the platform used.
+The values of these variables for each platform are listed below.
+ 
+<details>
+     <summary>For Dahu/Ciment</summary>
+     
+`$WORKPATH=/home/PROJECTS/pr-geoschem/<your-username>`
 where <your-username> is your perseus account username
-for ige-calcul: 
-`$RUNDIRPATH`
-where username is 
+`job-submission-command = oarsub -S`
+The `$OUTPUTDIR` is defined later for dahu. 
+
+</details>
+
+<details>
+     <summary>For Ige-Calcul</summary>
+     
+`$OUTPUTDIR=/workdir2/chianti/ige-username/`
+where the `<ige-username>`is generally your surname and the first letter of your first name created once you have an Agalan account. 
+`$WORKPATH=/workdir/chianti/ige-username/Out`
+</details>
+
 Quickstart
 ----------
 
 Once you are familiar with running GCClassic on GRICAD/CIMENT you can follow these steps to prepare and execute a new simulation. For your first simulation, follow the detailed [setup guide](#setup) below.
 
-1. Use the `createRunDir.sh` script of your desired GCClassic version to create a new run directory in `$RUNDIRPATH`
+1. Use the `createRunDir.sh` script of your desired GCClassic version to create a new run directory in `$WORKPATH`
    `/home/PROJECTS/pr-geoschem/<your-username>`:
 
 ```bash
@@ -123,9 +139,6 @@ Setup
 
 ### 1. Connect to supercomputer :
 
-<details>
-     <summary>For GRICAD/CIMENT</summary>
-
 On Ciment you need to connect the `dahu` head node
 
 Follow [the GRICAD/CIMENT documentation](https://gricad-doc.univ-grenoble-alpes.fr/en/hpc/connexion/) to configure ssh access to the cluster. Then, in a terminal on your local machine, execute:
@@ -133,16 +146,18 @@ Follow [the GRICAD/CIMENT documentation](https://gricad-doc.univ-grenoble-alpes.
 ```bash
 ssh dahu.ciment
 ```
-
-
-</details>
-
-
-
-
 > [!TIP]
 > Depending on how you configured ssh, you may instead use `ssh dahu` to connect to dahu.
 
+On *ige-calcul* you can run the following command:
+```
+ssh your_agalan_login@ige-calcul1.u-ga.fr
+```
+ Replace _your_agalan_login_ with your Agalan username .
+
+
+
+<!--
 ### 2. Go to the `pr-geoschem` project directory
 
 ```bash
@@ -155,12 +170,13 @@ Here are some of the subdirectories:
 
 ```
 ├── GCClassic-14.5.0/  # GCClassic version 14.5.0 model code
-├── geos-chem-data     # Symbolic link to GEOS-Chem input data on the /bettik volume
+├── geos-chem-data     # Symbolic link to GEOS-Chem input data on the `/summer` volume
 ├── geos-chem-setup/   # Setup scripts
 ├── micromamba/        # Software environments
 ```
 
 You should store your simulation configurations in a subdirectory of the `pr-geoschem` project folder.
+-->
 
 ### 3. Create a subdirectory for your simulations
 
