@@ -121,13 +121,24 @@ If you need to download a large volume of data, edit `download-data.sh` to incre
 Setup
 -----
 
-### 1. Connect to the `dahu` head node
+### 1. Connect to supercomputer :
+
+<details>
+     <summary>For GRICAD/CIMENT</summary>
+
+On Ciment you need to connect the `dahu` head node
 
 Follow [the GRICAD/CIMENT documentation](https://gricad-doc.univ-grenoble-alpes.fr/en/hpc/connexion/) to configure ssh access to the cluster. Then, in a terminal on your local machine, execute:
 
 ```bash
 ssh dahu.ciment
 ```
+
+
+</details>
+
+
+
 
 > [!TIP]
 > Depending on how you configured ssh, you may instead use `ssh dahu` to connect to dahu.
