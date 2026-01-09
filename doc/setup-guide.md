@@ -39,8 +39,9 @@ The values of these variables for each platform are listed below.
      <summary>For Dahu/Ciment</summary>
      
 `$WORKPATH=/home/PROJECTS/pr-geoschem/<your-username>`
-where <your-username> is your perseus account username
+where `<your-username>` is your perseus account username
 `job-submission-command = oarsub -S`
+`$INPUTPATH=/summer/geoschem/COMMON/ExtData`
 The `$OUTPUTDIR` is defined later for dahu. 
 
 </details>
@@ -48,10 +49,9 @@ The `$OUTPUTDIR` is defined later for dahu.
 <details>
      <summary>For Ige-Calcul</summary>
      
-`$OUTPUTDIR=/workdir2/chianti/ige-username/`
+`$WORKPATH=/workdir/chianti/ige-username`
 where the `<ige-username>`is generally your surname and the first letter of your first name created once you have an Agalan account. 
-`$WORKPATH=/workdir/chianti/ige-username/Out`
-
+`$INPUTPATH=/mnt/summer/geoschem/COMMON/ExtData`
 </details>
 
 Quickstart
@@ -60,15 +60,15 @@ Quickstart
 Once you are familiar with running GCClassic on GRICAD/CIMENT you can follow these steps to prepare and execute a new simulation. For your first simulation, follow the detailed [setup guide](#setup) below.
 
 1. Use the `createRunDir.sh` script of your desired GCClassic version to create a new run directory in `$WORKPATH`
-   `/home/PROJECTS/pr-geoschem/<your-username>`:
-
+   
 ```bash
 # You must execute createRunDir.sh from its parent directory
-cd /home/PROJECTS/pr-geoschem/<your-username>/<gcclassic-dir>/run
+cd $WORKPATH/<gcclassic-dir>/run
 ./createRunDir.sh
 ```
 > [!NOTE]
->The Ige-calcule users can skip step 2 and 3. 
+>The Ige-calcule users can skip step 2 and 3.
+
 2. In the new run directory, replace `OutputDir` and `Restarts` with symlinks to new dirs on `/bettik`:
 
 ```bash
@@ -261,7 +261,7 @@ This will be stored in /home/houghi/.geoschem/config for future automatic use.
 -----------------------------------------------------------
 Enter path for ExtData:
 -----------------------------------------------------------
->>> /summer/geoschem/COMMON/ExtData
+>>> $INPUTPATH
 ```
 
 Then follow the prompts to register as a new GEOS-Chem user.
