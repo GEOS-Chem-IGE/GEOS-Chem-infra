@@ -38,8 +38,9 @@ The values of these variables for each platform are listed below.
 <details>
      <summary>For Dahu/Ciment</summary>
      
-`$WORKPATH=/home/PROJECTS/pr-geoschem/<your-username>`
-where `<your-username>` is your perseus account username
+`$WORKPATH=/home/PROJECTS/pr-geoschem/`
+
+where `<your-username>` is your perseus account username. 
 `job-submission-command = oarsub -S`
 `$INPUTPATH=/summer/geoschem/COMMON/ExtData`
 The `$OUTPUTDIR` is defined later for dahu. 
@@ -140,7 +141,7 @@ Setup
 
 ### 1. Connect to supercomputer :
 
-On Ciment you need to connect the `dahu` head node
+On *Ciment* you need to connect the `dahu` head node
 
 Follow [the GRICAD/CIMENT documentation](https://gricad-doc.univ-grenoble-alpes.fr/en/hpc/connexion/) to configure ssh access to the cluster. Then, in a terminal on your local machine, execute:
 
@@ -413,15 +414,21 @@ ln -s /bettik/PROJECTS/pr-geoschem/<your-username>/<new-output-dir> OutputDir
 <details>
      <summary>For Ige-Calcul</summary>
 
-In `Ige-calcul`, there is no temporary volume. However there is a space that is on summer and for the instance we are using it as our `$OUTPUTDIR`:
-
-     
+In `Ige-calcul`, there is no temporary volume. However there is a space; `/workdir2/chianti/<username>` that is on `summer`, and for instance we are using it as our `OutputDir`. 
+You can verify if you have your space on workdir2 by redirecting there:
+```bash
+cd /workdir2/chianti/
+```
+Then run `ls` command. If you can't find your `<ige-username>` you can create one by using the following command: 
+```bash
+mkdir
+```
 ### 7. Configure the run environment
 
 The `pr-geoschem` project contains an environment constructed with [micromamba](https://mamba.readthedocs.io/en/latest/user_guide/micromamba.html) that includes all the external compilers and libraries needed to build and run GEOS-Chem Classic (see the [GCClassic documentation](https://geos-chem.readthedocs.io/en/stable/getting-started/system-req-soft.html) for details). You will need to activate this environment and set some environment variables whenever you build GEOS-Chem or run a simulation. The script `/home/PROJECTS/pr-geoschem/geos-chem-setup/gcclassic-gnu14.env` will do this automatically. To make it easy to run this script, you should copy it into your run directory:
 
 ```bash
-cp -vi /home/PROJECTS/pr-geoschem/geos-chem-setup/gcclassic-gnu14.env .
+cp -vi $WORKPATH/GEOS-Chem-infra/run/gcclassic-gnu14.env .
 ```
 
 We recommend copying the script rather than using a symbolic link because the script might be modified in the future.
@@ -430,14 +437,14 @@ We recommend copying the script rather than using a symbolic link because the sc
 
 The GRICAD/CIMENT cluster has two types of nodes: head nodes and computation nodes. Head nodes such as `dahu` are reserved for light file management and submitting jobs. To run intensive tasks such as compiling GCClassic or running a simulation you must submit a job that will be executed by the computation nodes.
 
-The `pr-geoschem` project includes templates for job scripts that execute three tasks:
+The `run` directory of this repository includes templates for job scripts that execute three tasks:
 
 1. Build GCClassic (`1_build.sh`)
 2. Execute a dryrun to check the configuration and identify any missing input data (`2_dryrun.sh`)
   * Download any missing input data identified by the dryrun (`download-data.sh`)
 4. Run a simulation (`3_run.sh`)
 
-You should copy these example job scripts from `/home/PROJECTS/pr-geoschem/geos-chem-setup/jobscripts` into your run dir. It's important to copy the scripts rather than linking them because you will need to modify the settings (e.g. job resources and walltime).
+You should copy these example job scripts from `$WORKPATH/GEOS-Chem-infra/run/<platform-name>` into your run dir. It's important to copy the scripts rather than linking them because you will need to modify the settings (e.g. job resources and walltime).
 
 ```bash
 cp /home/PROJECTS/pr-geoschem/geos-chem-setup/jobscripts/*.sh .
