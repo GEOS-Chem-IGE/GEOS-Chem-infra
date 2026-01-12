@@ -29,7 +29,7 @@ You should also have a basic familiarity with the unix command line and git. Man
 
 ## Common settings for both platforms
 
--The repository should be cloned in `$WORKDIR`.\
+-The repository should be cloned in `$WORKPATH`.\
 -The input data are located in `$INPUTDIR`.\
 -Jobs are executed and outputs are saved in `$OUTPUTDIR`.\
 -The `job-submission-command` may vary depending on the platform used.\
@@ -43,7 +43,6 @@ The values of these variables for each platform are listed below.
 where `<your-username>` is your perseus account username. 
 `job-submission-command = oarsub -S`
 `$INPUTPATH=/summer/geoschem/COMMON/ExtData`
-The `$OUTPUTDIR` is defined later for dahu. 
 
 </details>
 
@@ -68,7 +67,10 @@ cd $WORKPATH/<gcclassic-dir>/run
 ./createRunDir.sh
 ```
 > [!NOTE]
->The Ige-calcule users can skip step 2 and 3.
+>The Ige-calcule users can instead of step 2 and 3 just redirect to your $WORKPATH directory:
+>```bash
+>cd $WORKPATH
+>```
 
 2. In the new run directory, replace `OutputDir` and `Restarts` with symlinks to new dirs on `/bettik`:
 
@@ -83,13 +85,13 @@ ln -s /bettik/PROJECTS/pr-geoschem/<your-username>/<new-output-dir>/* .
 3. Copy the environment activation script:
 
 ```bash
-cp -iv /home/PROJECTS/pr-geoschem/geos-chem-setup/gcclassic-gnu14.env .
+cp -iv /home/PROJECTS/pr-geoschem/GEOS-Chem-IGE/run/dahu-ciment/gcclassic-gnu14.env .
 ```
 
 4. Copy the job script templates:
 
 ```bash
-cp -iv $WORKDIR/GEOS-Chem-infra//run/*.sh .
+cp -iv $WORKPATH/GEOS-Chem-infra/run/<platform-name>/*.sh .
 ```
 
 5. Build the code:
@@ -193,13 +195,13 @@ cd <your-username>
      <summary>For Ige-Calcul</summary>
 
  
-You can verify if you have your space on workdir2 by redirecting there:
+Your $RUNDIR will is already available and it is `workdir2` space. You can verify it by redirecting there:
 ```bash
 cd /workdir2/chianti/
 ```
 Then run `ls` command. If you can't find your `<ige-username>` you can create one by using the following command: 
 ```bash
-mkdir
+mkdir <your-username>
 ```
 </details>
 
