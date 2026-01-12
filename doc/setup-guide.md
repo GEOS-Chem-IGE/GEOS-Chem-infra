@@ -195,7 +195,7 @@ cd <your-username>
      <summary>For Ige-Calcul</summary>
 
  
-Your $RUNDIR will is already available and it is `workdir2` space. You can verify it by redirecting there:
+Your $RUNDIR is already available and it is `workdir2` space. You can verify it by redirecting there:
 ```bash
 cd /workdir2/chianti/
 ```
