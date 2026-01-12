@@ -89,7 +89,7 @@ cp -iv /home/PROJECTS/pr-geoschem/geos-chem-setup/gcclassic-gnu14.env .
 4. Copy the job script templates:
 
 ```bash
-cp -iv $WORKDIR/GEOS-Chem-infra/run/*.sh .
+cp -iv $WORKDIR/GEOS-Chem-infra//run/*.sh .
 ```
 
 5. Build the code:
@@ -101,11 +101,6 @@ Edit the `1_build.sh` script if you want to set special [build options](https://
 
 ```bash
 <jub-submission-command> ./1_build.sh
-```
-You can verify the status of your created job on OAR with:
-
-```bash
-oarstat -u <your-ID>
 ```
 
 6. Configure your simulation
@@ -182,21 +177,22 @@ You should store your simulation configurations in a subdirectory of the `pr-geo
 
 ### 2. Create a '$RUNDIR' subdirectory for your simulations : 
 
+Create a new subdirectory to store the configuration and output of your simulations. 
 
-
-Within the `$WORKDIR` directory, create a new subdirectory to store the configuration and output of your simulations. Name the subdirectory with your username.
-Example:
-
+<details>
+     <summary>For Dahu-Ciment</summary>
+     you can create a subdirectory with your username.
 ```bash
 cd /home/PROJECTS/pr-geoschem
 mkdir <your-username> 
 cd <your-username>
 ```
-
+</details>
+     
 <details>
      <summary>For Ige-Calcul</summary>
 
-In `Ige-calcul`, there is no temporary volume. However there is a space; `/workdir2/chianti/<username>` that is on `summer` volume, and for instance we are using it as our `OutputDir`. 
+ 
 You can verify if you have your space on workdir2 by redirecting there:
 ```bash
 cd /workdir2/chianti/
@@ -383,7 +379,7 @@ Create the run directory in the subdirectory you created in step 3:
 -----------------------------------------------------------
 Enter path where the run directory will be created:
 -----------------------------------------------------------
->>> $WORKPATH/<your-username>
+>>> $RUNDIR
 ```
 
 Use the default run directory name:
@@ -433,16 +429,9 @@ ln -s /bettik/PROJECTS/pr-geoschem/<your-username>/<new-output-dir> OutputDir
 <details>
      <summary>For Ige-Calcul</summary>
 
-In `Ige-calcul`, there is no temporary volume. However there is a space; `/workdir2/chianti/<username>` that is on `summer` volume, and for instance we are using it as our `OutputDir`. 
-You can verify if you have your space on workdir2 by redirecting there:
-```bash
-cd /workdir2/chianti/
-```
-Then run `ls` command. If you can't find your `<ige-username>` you can create one by using the following command: 
-```bash
-mkdir
-```
+There is no need to create a 'OutputDir' it already exists in the $RUNDIR you created in section 2. Indeed, on `Ige-calcul`, there is no temporary volume. The $RUNDIR space that we mentioned in section 2: `/workdir2/chianti/<username>` is on `summer` volume, for instance we are using it as our `OutputDir`. 
 </details>
+
 > [!NOTE]
 > The `ige-calcul` users can skip the next step.
 
