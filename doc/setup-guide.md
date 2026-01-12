@@ -180,7 +180,9 @@ Here are some of the subdirectories:
 You should store your simulation configurations in a subdirectory of the `pr-geoschem` project folder.
 -->
 
-### 2. Create a subdirectory for your simulations
+### 2. Create a '$RUNDIR' subdirectory for your simulations : 
+
+
 
 Within the `$WORKDIR` directory, create a new subdirectory to store the configuration and output of your simulations. Name the subdirectory with your username.
 Example:
@@ -190,6 +192,23 @@ cd /home/PROJECTS/pr-geoschem
 mkdir <your-username> 
 cd <your-username>
 ```
+
+<details>
+     <summary>For Ige-Calcul</summary>
+
+In `Ige-calcul`, there is no temporary volume. However there is a space; `/workdir2/chianti/<username>` that is on `summer` volume, and for instance we are using it as our `OutputDir`. 
+You can verify if you have your space on workdir2 by redirecting there:
+```bash
+cd /workdir2/chianti/
+```
+Then run `ls` command. If you can't find your `<ige-username>` you can create one by using the following command: 
+```bash
+mkdir
+```
+</details>
+
+
+
 
 Please add a `README.md` file in this directory with a brief description of your research topic and a list of the people working on it.
 
@@ -242,7 +261,7 @@ You can now use GEOS-Chem's built-in setup script to create a "run directory" fo
 Example using GCClassic 14.5.0:
 
 ```bash
-cd /home/PROJECTS/pr-geoschem/GCClassic-14.5.0/run
+cd WORKPATH/GCClassic-14.5.0/run
 ./createRunDir.sh
 ```
 
@@ -253,12 +272,12 @@ You will be prompted with a series of questions to configure the run directory:
 
 #### Configure input data and register as a GEOS-Chem user
 
-If this is the first time you have created a run directory, you will be prompted to enter the path to the `ExtData` directory that contains input data for GEOS-Chem (meteorology, emissions, etc.). Enter the `$INPUTDATA` regarding the plateform you use. For example in Dahu:
+If this is the first time you have created a run directory, you will be prompted to enter the path to the `ExtData` directory that contains input data for GEOS-Chem (meteorology, emissions, etc.). Enter the `$INPUTDATA` regarding the plateform you use. For example this is the kind of question  you will be asked:
 
 ```
 -----------------------------------------------------------
 Define path to ExtData.
-This will be stored in /home/houghi/.geoschem/config for future automatic use.
+This will be stored in /home/<your-username>/.geoschem/config for future automatic use.
 -----------------------------------------------------------
 Enter path for ExtData:
 -----------------------------------------------------------
@@ -414,7 +433,7 @@ ln -s /bettik/PROJECTS/pr-geoschem/<your-username>/<new-output-dir> OutputDir
 <details>
      <summary>For Ige-Calcul</summary>
 
-In `Ige-calcul`, there is no temporary volume. However there is a space; `/workdir2/chianti/<username>` that is on `summer`, and for instance we are using it as our `OutputDir`. 
+In `Ige-calcul`, there is no temporary volume. However there is a space; `/workdir2/chianti/<username>` that is on `summer` volume, and for instance we are using it as our `OutputDir`. 
 You can verify if you have your space on workdir2 by redirecting there:
 ```bash
 cd /workdir2/chianti/
@@ -423,6 +442,10 @@ Then run `ls` command. If you can't find your `<ige-username>` you can create on
 ```bash
 mkdir
 ```
+</details>
+> [!NOTE]
+> The `ige-calcul` users can skip the next step.
+
 ### 7. Configure the run environment
 
 The `pr-geoschem` project contains an environment constructed with [micromamba](https://mamba.readthedocs.io/en/latest/user_guide/micromamba.html) that includes all the external compilers and libraries needed to build and run GEOS-Chem Classic (see the [GCClassic documentation](https://geos-chem.readthedocs.io/en/stable/getting-started/system-req-soft.html) for details). You will need to activate this environment and set some environment variables whenever you build GEOS-Chem or run a simulation. The script `/home/PROJECTS/pr-geoschem/geos-chem-setup/gcclassic-gnu14.env` will do this automatically. To make it easy to run this script, you should copy it into your run directory:
@@ -447,7 +470,7 @@ The `run` directory of this repository includes templates for job scripts that e
 You should copy these example job scripts from `$WORKPATH/GEOS-Chem-infra/run/<platform-name>` into your run dir. It's important to copy the scripts rather than linking them because you will need to modify the settings (e.g. job resources and walltime).
 
 ```bash
-cp /home/PROJECTS/pr-geoschem/geos-chem-setup/jobscripts/*.sh .
+cp $WORKPATH/GEOS-Chem-infra/run/<platform-name>/*.sh .
 ```
 
 > [!IMPORTANT]
