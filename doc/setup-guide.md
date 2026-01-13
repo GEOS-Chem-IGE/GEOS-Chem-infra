@@ -85,7 +85,7 @@ ln -s /bettik/PROJECTS/pr-geoschem/<your-username>/<new-output-dir>/* .
 3. Copy the environment activation script:
 
 ```bash
-cp -iv /home/PROJECTS/pr-geoschem/GEOS-Chem-IGE/run/dahu-ciment/gcclassic-gnu14.env .
+cp -iv $WORKPATH/GEOS-Chem-IGE/run/dahu-ciment/gcclassic-gnu14.env .
 ```
 
 4. Copy the job script templates:
@@ -136,7 +136,7 @@ If you need to download a large volume of data, edit `download-data.sh` to incre
 Setup
 -----
 
-### 1. Connect to supercomputer :
+### 1. Connect to the computation cluster :
 
 On *Ciment* you need to connect the `dahu` head node
 
@@ -176,14 +176,17 @@ Here are some of the subdirectories:
 
 You should store your simulation configurations in a subdirectory of the `pr-geoschem` project folder.
 -->
-
-### 2. Create a '$RUNDIR' subdirectory for your simulations : 
+### 2. Clone this repository :
+ Clone the actuel repository on your $WORKPATH 
+### 3. Create a '$RUNDIR' subdirectory for your simulations : 
 
 Create a new subdirectory to store the configuration and output of your simulations. 
 
 <details>
      <summary>For Dahu-Ciment</summary>
-     you can create a subdirectory with your username.
+     
+Name the subdirectory with your username by running: 
+     
 ```bash
 cd /home/PROJECTS/pr-geoschem
 mkdir <your-username> 
@@ -212,13 +215,13 @@ Please add a `README.md` file in this directory with a brief description of your
 
 ### 4. Clone a specific version of the GEOS-Chem Classic code
 
-If you want to run a specific version of GEOS-Chem Classic that is not already in the `pr-geoschem` directory, you will need to clone the official [GCClassic repository](https://github.com/geoschem/GCClassic) and checkout the desired release.
+If you want to run a specific version of GEOS-Chem Classic that is not already in the $WORKPATH directory, you will need to clone the official [GCClassic repository](https://github.com/geoschem/GCClassic) and checkout the desired release.
 
 For example, if you wanted to use version 14.4.3:
 
 ```bash
 # Go to the shared project directory
-cd /home/PROJECTS/pr-geoschem
+cd $WORKPATH
 
 # Clone the GCClassic source code into a directory named with the version
 git clone https://github.com/geoschem/GCClassic.git GCClassic-14.4.3
@@ -426,12 +429,12 @@ cd /home/PROJECTS/pr-geoschem/<your-username>/<new-run-dir>
 rmdir OutputDir
 ln -s /bettik/PROJECTS/pr-geoschem/<your-username>/<new-output-dir> OutputDir
 ```
-<details>
+</details>
 
 <details>
      <summary>For Ige-Calcul</summary>
 
-There is no need to create a 'OutputDir' it already exists in the $RUNDIR you created in section 2. Indeed, on `Ige-calcul`, there is no temporary volume. The $RUNDIR space that we mentioned in section 2: `/workdir2/chianti/<username>` is on `summer` volume, for instance we are using it as our `OutputDir`. 
+There is no need to create a 'OutputDir'. It already exists in the $RUNDIR you created in section 2. Indeed, on `Ige-calcul`, there is no temporary volume. The $RUNDIR space that we mentioned in section 2: `/workdir2/chianti/<username>` is on `summer` volume, for instance we are using it as our `OutputDir`. 
 </details>
 
 > [!NOTE]
@@ -449,7 +452,7 @@ We recommend copying the script rather than using a symbolic link because the sc
 
 ### 8. Configure job scripts
 
-The GRICAD/CIMENT cluster has two types of nodes: head nodes and computation nodes. Head nodes such as `dahu` are reserved for light file management and submitting jobs. To run intensive tasks such as compiling GCClassic or running a simulation you must submit a job that will be executed by the computation nodes.
+The GRICAD/CIMENT and ige-calcul clusters has two types of nodes: head nodes and computation nodes. Head nodes are reserved for light file management and submitting jobs. To run intensive tasks such as compiling GCClassic or running a simulation you must submit a job that will be executed by the computation nodes.
 
 The `run` directory of this repository includes templates for job scripts that execute three tasks:
 
@@ -458,7 +461,7 @@ The `run` directory of this repository includes templates for job scripts that e
   * Download any missing input data identified by the dryrun (`download-data.sh`)
 4. Run a simulation (`3_run.sh`)
 
-You should copy these example job scripts from `$WORKPATH/GEOS-Chem-infra/run/<platform-name>` into your run dir. It's important to copy the scripts rather than linking them because you will need to modify the settings (e.g. job resources and walltime).
+You should copy these example job scripts from `$WORKPATH/GEOS-Chem-infra/run/<platform-name>` into your `$RUNDIR`. It's important to copy the scripts rather than linking them because you will need to modify the settings (e.g. job resources and walltime).
 
 ```bash
 cp $WORKPATH/GEOS-Chem-infra/run/<platform-name>/*.sh .
@@ -467,7 +470,7 @@ cp $WORKPATH/GEOS-Chem-infra/run/<platform-name>/*.sh .
 > [!IMPORTANT]
 > Before using the run script (`3_run.sh`) you should edit it to configure resources and walltime appropriate for your simulation.
 
-The [GRICAD/CIMENT documentation](https://gricad-doc.univ-grenoble-alpes.fr/en/hpc/joblaunch/) details how to submit and view jobs and explains how they are scheduled by the OAR job manager.
+Based on the platform you use can find more details on[GRICAD/CIMENT documentation](https://gricad-doc.univ-grenoble-alpes.fr/en/hpc/joblaunch/)   or [ige-calcul](https://ige-calcul.github.io/public-docs/docs/clusters/Ige/ige-calcul1.html#slurm-submit-a-job-on-the-cluster) about submitting and viewing jobs and how to use the job schedular.
 
 ### 9. Configure the simulation
 
@@ -480,7 +483,7 @@ You can now follow the GCClassic user guide steps to:
 5. [Run a simulation](https://geos-chem.readthedocs.io/en/stable/gcclassic-user-guide/run.html)
 
 > [!IMPORTANT]
-> Do not run the commands in these guides on the `dahu` head node. Whenever the setup guide tells you to execute a command, use one of the job scripts to execute it on a computation node. For example, the `1_build.sh` script will configure the compilation with `cmake` and build the code with `make`.
+> Do not run the commands in these guides on the head node. Whenever the setup guide tells you to execute a command, use one of the job scripts to execute it on a computation node. For example, the `1_build.sh` script will configure the compilation with `cmake` and build the code with `make`.
 
 ### 10. Examine the simulation output
 
