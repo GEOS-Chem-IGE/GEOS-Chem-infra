@@ -5,7 +5,6 @@
 #SBATCH --time 08:30:00
 #SBATCH --mem=15000
 #SBATCH --account=chianti
-#SBATCH --mail-user=erfan.jahangir@univ-grenoble-alpes.fr
 #SBATCH --mail-type=FAIL
 #SBATCH --mail-type=END
 
