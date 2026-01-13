@@ -1,7 +1,7 @@
 GEOS-Chem simulation guide
 ==========================
 
-This guide explains how to configure and run a [GEOS-Chem Classic](https://geos-chem.readthedocs.io/en/latest/index.html) (GCClassic) simulation on the [GRICAD/CIMENT](https://gricad-doc.univ-grenoble-alpes.fr/en/hpc/) and [ige-calcul](https://ige-intranet.osug.fr/spip.php?rubrique157) computing cluster.
+This guide explains how to configure and run a [GEOS-Chem Classic](https://geos-chem.readthedocs.io/en/latest/index.html) (GCClassic) simulation on the [GRICAD/CIMENT](https://gricad-doc.univ-grenoble-alpes.fr/en/hpc/) and [ige-calcul](https://ige-calcul.github.io/public-docs/docs/clusters/Ige/ige-calcul1.html#features-of-the-clusters) computing cluster.
 
 
 Prerequisites
@@ -18,7 +18,7 @@ Prerequisites
      <summary>For Ige-calcul</summary>
      
 1- You must have a Agalan account. 
-2- You must require the ige-caclul admins [here](https://geos-chem.readthedocs.io/en/latest/index.html) to create you a slurm account to be able to run the jobscripts via the slurm on ige-calcul servers. 
+2- You must require the ige-caclul admins as explained [here]([https://geos-chem.readthedocs.io/en/latest/index.html](https://ige-calcul.github.io/public-docs/docs/clusters/Ige/ige-calcul1.html#connection-to-the-server)) to create you a slurm account to be able to run the jobscripts via the slurm on ige-calcul servers. 
 
 </details>
 
@@ -31,7 +31,6 @@ You should also have a basic familiarity with the unix command line and git. Man
 
 -The repository should be cloned in `$WORKPATH`.\
 -The input data are located in `$INPUTDIR`.\
--Jobs are executed and outputs are saved in `$OUTPUTDIR`.\
 -The `job-submission-command` may vary depending on the platform used.\
 The values of these variables for each platform are listed below.
  
@@ -39,8 +38,6 @@ The values of these variables for each platform are listed below.
      <summary>For Dahu/Ciment</summary>
      
 `$WORKPATH=/home/PROJECTS/pr-geoschem/`
-
-where `<your-username>` is your perseus account username. 
 `job-submission-command = oarsub -S`
 `$INPUTPATH=/summer/geoschem/COMMON/ExtData`
 
@@ -152,8 +149,9 @@ On *ige-calcul* you can run the following command:
 ```
 ssh your_agalan_login@ige-calcul1.u-ga.fr
 ```
- Replace _your_agalan_login_ with your Agalan username .
-
+ Replace _your_agalan_login_ with your Agalan username. For more detail check [here](https://ige-calcul.github.io/public-docs/docs/clusters/Ige/ige-calcul1.html#connection-to-the-server).
+> [!TIP]
+> Depending on how you configured ssh explained [here](https://ige-calcul.github.io/public-docs/docs/clusters/Ige/ige-calcul1.html#connection-to-the-server), you may instead use `ssh calcul` to connect to ige-calcul1.
 
 
 <!--
@@ -177,7 +175,13 @@ Here are some of the subdirectories:
 You should store your simulation configurations in a subdirectory of the `pr-geoschem` project folder.
 -->
 ### 2. Clone this repository :
- Clone the actuel repository on your $WORKPATH 
+ Clone the current repository on your $WORKPATH :
+
+```bash
+cd $WORKPATH
+git clone https://github.com/GEOS-Chem-IGE/GEOS-Chem-infra.git
+```
+ 
 ### 3. Create a '$RUNDIR' subdirectory for your simulations : 
 
 Create a new subdirectory to store the configuration and output of your simulations. 
@@ -189,7 +193,8 @@ Name the subdirectory with your username by running:
      
 ```bash
 cd /home/PROJECTS/pr-geoschem
-mkdir <your-username> 
+mkdir <your-username>
+where `<your-username>` is your perseus account username. 
 cd <your-username>
 ```
 </details>
