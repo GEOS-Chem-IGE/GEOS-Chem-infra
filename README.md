@@ -7,17 +7,26 @@ This repository contains software infrastructure to run the [GEOS-Chem](https://
 Contents
 --------
 
-* [doc](doc/): documentation and tutorials for installation and running GEOS-Chem on [Dahu (GRICAD)](https://github.com/GEOS-Chem-IGE/GEOS-Chem-infra/blob/issue14/update-readme/doc/dahu-ciment.md) and [IGE-Calcul (internal IGE server)](https://github.com/GEOS-Chem-IGE/GEOS-Chem-infra/blob/issue14/update-readme/doc/ige-calcul.md) servers. 
+* [data](data/): Scripts to manage the GEOS-Chem input data on the `summer/geoschem` volume. Additional input data can be downloaded by following the instructions provided at [GEOS-Chem documentation](https://geos-chem.readthedocs.io/en/stable/gcclassic-user-guide/download-data.html).
 
-* [data](data/): The input data required for GEOS-Chem simulations are loaded on the ```summer```volume. The contents of ```data``` directory allows users to update or supplement the list of currently available inputs. If necessary, additional data can be downloaded by following the instructions provided at [GEOS-Chem documentation](https://geos-chem.readthedocs.io/en/stable/gcclassic-user-guide/download-data.html).
+* [doc](doc/): Documentation and tutorials for running GEOS-Chem on the [GRICAD/CIMENT](https://gricad-doc.univ-grenoble-alpes.fr/en/hpc/) and [ige-calcul](https://ige-calcul.github.io/public-docs/docs/clusters/Ige/ige-calcul1.html) computing clusters.
 
-* [run](run/): all required scripts to run a GEOS-Chem simulation on [Dahu (GRICAD)](https://github.com/GEOS-Chem-IGE/GEOS-Chem-infra/tree/issue14/update-readme/run/dahu-ciment) and [IGE-Calcul](https://github.com/GEOS-Chem-IGE/GEOS-Chem-infra/tree/issue14/update-readme/run/ige-calcul) .
+* [run](run/): Template job scripts for building the GEOS-Chem model code and running simulations on the computing clusters. See the [simulation guide](doc/simulation-guide.md) for details.
 
-## Style Guide: 
-* Code linted with [ruff](https://docs.astral.sh/ruff/)
-* Filenaming convention:
-  - For any md files except README, use lowercase and dashes between word e.g. setup_guide.md
-  - For code scripts and directories only lowercase and under-scores must be used. e.g. run_module.py
+* [tools](tools/): Miscellaneous helper scripts
+
+
+Style Guide
+-----------
+
+### Markdown files
+
+* Filenames are lowercase with dashes between words e.g. `setup-guide.md`
+
+### Code
+
+* Code must be linted with [ruff](https://docs.astral.sh/ruff/)
+* File and directory names are lowercase with underscores. e.g. `run_module.py`
 
 
 Contact
