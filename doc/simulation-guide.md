@@ -19,7 +19,7 @@ Prerequisites
      <summary>For ige-calcul</summary>
 
 1. You must have a Agalan account (Univ. Grenoble Alpes computing account)
-2. You must have a SLURM (job scheduler) account on `ige-caclul`. Ask the admins to create your account as explained [here](https://ige-calcul.github.io/public-docs/docs/clusters/Ige/ige-calcul1.html#connection-to-the-server).
+2. You must have a SLURM (job scheduler) account on `ige-calcul`. Ask the admins to create your account as explained [here](https://ige-calcul.github.io/public-docs/docs/clusters/Ige/ige-calcul1.html#connection-to-the-server).
 
 </details>
 
@@ -39,7 +39,7 @@ Common settings for both platforms
 <details>
      <summary>For GRICAD/CIMENT</summary>
 
-- `WORKDIR` = `/summer/geoschem/<username>`
+- `WORKDIR` = `/home/PROJECTS/pr-geoschem/<username>`
 - `INPUTDIR` = `/summer/geoschem/COMMON/ExtData`
 - `job-submission-command` = `oarsub -S`
 
@@ -83,13 +83,13 @@ cd $WORKDIR/GCClassic/run
 cd $WORKDIR/<run-dir>
 
 # Template job scripts
-cp -iv $WORKDIR/GEOS-Chem-IGE/run/<platform>/*.sh .
+cp -iv $WORKDIR/GEOS-Chem-infra/run/<platform>/*.sh .
 ```
 
 On GRICAD/CIMENT, you also need to copy the environment activation script:
 
 ```bash
-cp -iv $WORKDIR/GEOS-Chem-IGE/run/ciment/gcclassic-gnu14.env .
+cp -iv $WORKDIR/GEOS-Chem-infra/run/ciment/gcclassic-gnu14.env .
 ```
 
 4. Build the model.
@@ -442,8 +442,6 @@ You can now follow the GCClassic user guide steps to:
 
 If your run completed successfully, you should see the output files in `<run-dir>/OutputDir`.
 
-TODO document viewing + plotting output?
-
 
 Further resources
 -----------------
@@ -451,6 +449,7 @@ Further resources
 - [GEOS-Chem documentation](https://geos-chem.readthedocs.io/en/stable/)
 - [GEOS-Chem simulation types](https://wiki.seas.harvard.edu/geos-chem/index.php?title=Guide_to_GEOS-Chem_simulations)
 - [GRICAD/CIMENT documentation](https://gricad-doc.univ-grenoble-alpes.fr/en/hpc/)
+- [Ige-calcul documentation](https://ige-calcul.github.io/public-docs/docs/index.html)
 
 
 About
