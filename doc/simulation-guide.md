@@ -150,7 +150,7 @@ ssh dahu.ciment
 </details>
 
 <details>
-     <summary>For GRICAD/CIMENT</summary>
+     <summary>For ige-calcul</summary>
 
 On *ige-calcul* you should connect to the `ige-calcul1` head node:
 
@@ -172,10 +172,10 @@ You should place all model code and simulation runs in your personal `WORKDIR` w
 <details>
      <summary>For GRICAD/CIMENT</summary>
 
-On GRICAD/CIMENT, your `WORKDIR` is on the `/summer/geoschem` volume:
+On GRICAD/CIMENT, your `WORKDIR` is on the `/home/PROJECTS/pr-geoschem` volume:
 
 ```bash
-cd /summer/geoschem
+cd /home/PROJECTS/pr-geoschem
 mkdir -p <username>
 ```
 </details>
@@ -213,8 +213,7 @@ git checkout tags/14.4.3
 git switch --checkout v14.4.3
 
 # Checkout all submodules (HEMCO, GEOS-Chem "science codebase")
-git submodule init
-git submodule update
+git submodule update --init --recursive
 ```
 
 You can run `git log -n 1` to double-check you have checked out the desired tag. The first line of the output should include the text `tag: <version>`, for example:
@@ -251,6 +250,8 @@ You will be prompted with a series of questions to configure the run directory:
 > [!NOTE]
 > If you are using a different version of GEOS-Chem, the questions and available options may differ from those shown here.
 
+The following steps are based on the GEOS-Chem Classic [guide to creating a full-chemistry simulation run directory](https://geos-chem.readthedocs.io/en/stable/gcclassic-user-guide/rundir-fullchem.html).
+
 #### Configure input data and register as a GEOS-Chem user
 
 If this is the first time you have created a run directory, you will be prompted to enter the path to the `ExtData` directory that contains input data for GEOS-Chem (meteorology, emissions, etc.). Enter the `INPUTDATA` path corresponding to your computing platform (see [here](#common-settings-for-both-platforms)). For example, this is the kind of question you will be asked:
@@ -268,8 +269,6 @@ Enter path for ExtData:
 Then follow the prompts to register as a new GEOS-Chem user.
 
 #### Choose simulation settings
-
-The following steps are based on the GEOS-Chem Classic [guide to creating a full-chemistry simulation run directory](https://geos-chem.readthedocs.io/en/stable/gcclassic-user-guide/rundir-fullchem.html).
 
 Next, you will be prompted to select a simulation type. Enter `1` to create a full-chemistry simulation (see the [GEOS-Chem Wiki](https://wiki.seas.harvard.edu/geos-chem/index.php?title=Guide_to_GEOS-Chem_simulations) for information on the different simulation types):
 
