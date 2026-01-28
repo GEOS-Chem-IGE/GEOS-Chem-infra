@@ -105,7 +105,7 @@ Edit the `1_build.sh` script if you want to set special [build options](https://
 
 5. Configure your simulation.
 
-Edit `geoschem_config.yml`, `HEMCO_Config.rc`, `HISTORY.rc`, etc. as needed. See the documentation on [configuring a simulation](https://geos-chem.readthedocs.io/en/14.5.0/gcclassic-user-guide/config-overview.html), and [configuring HEMCO](https://hemco.readthedocs.io/en/stable/hco-ref-guide/hemco-config.html) for details.
+Edit `geoschem_config.yml`, `HEMCO_Config.rc`, `HISTORY.rc`, etc. as needed. See the documentation on [configuring a simulation](https://hemco.readthedocs.io/en/stable/hco-sa-guide/config-sim.html), and [configuring HEMCO](https://hemco.readthedocs.io/en/stable/hco-ref-guide/hemco-config.html) for details.
 
 6. Execute a dry run.
 
