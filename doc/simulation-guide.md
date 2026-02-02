@@ -31,10 +31,11 @@ You should also have a basic familiarity with the Unix command line and git. Man
 
 Common settings for both platforms
 ----------------------------------
+Model and simulation code should be placed in WORKDIR.
+The input data are located in INPUTDIR.
+The job-submission-command adds a task to the system's queue.
+The values of these variables for each platform are listed below:
 
-- Model and simulation code should be placed in `WORKDIR`.
-- The input data are located in `INPUTDIR`.
-- The `job-submission-command` varies depending on the platform used. The values of these variables for each platform are listed below.
 
 <details>
      <summary>For GRICAD/CIMENT</summary>
@@ -73,23 +74,23 @@ git checkout 14.4.3
 
 ```bash
 # You must execute createRunDir.sh from its parent directory
-cd $WORKDIR/GCClassic/run
+cd "$WORKDIR/GCClassic/run"
 ./createRunDir.sh
 ```
 
 3. Copy job script templates for your computing platform into the run dir.
 
 ```bash
-cd $WORKDIR/<run-dir>
+cd "$WORKDIR/<run-dir>"
 
 # Template job scripts
-cp -iv $WORKDIR/GEOS-Chem-infra/run/<platform>/*.sh .
+cp -iv "$WORKDIR/GEOS-Chem-infra/run/<platform>/*.sh ."
 ```
 
 On GRICAD/CIMENT, you also need to copy the environment activation script:
 
 ```bash
-cp -iv $WORKDIR/GEOS-Chem-infra/run/ciment/gcclassic-gnu14.env .
+cp -iv "$WORKDIR/GEOS-Chem-infra/run/ciment/gcclassic-gnu14.env ."
 ```
 
 4. Build the model.
@@ -201,7 +202,7 @@ Please add a `README.md` file in `WORKDIR` with a brief description of your rese
 
 ```bash
 # Go to the shared project directory
-cd $WORKDIR
+cd "$WORKDIR"
 
 # Clone the GCClassic source code into a directory named with the version you
 # plan to use
@@ -396,7 +397,7 @@ The `/home/PROJECTS/pr-geoschem` project contains an environment constructed wit
 
 ```bash
 cd <run-dir>
-cp -iv $WORKDIR/GEOS-Chem-infra/run/gcclassic-gnu14.env .
+cp -iv "$WORKDIR/GEOS-Chem-infra/run/gcclassic-gnu14.env ."
 ```
 
 You should copy the script rather than using a symbolic link because the script might be modified in the future.
@@ -416,7 +417,7 @@ You should copy these example job scripts from `$WORKDIR/GEOS-Chem-infra/run/<pl
 
 ```bash
 cd <run-dir>
-cp -iv $WORKDIR/GEOS-Chem-infra/run/<platform-name>/*.sh .
+cp -iv "$WORKDIR/GEOS-Chem-infra/run/<platform-name>/*.sh ."
 ```
 
 > [!IMPORTANT]
