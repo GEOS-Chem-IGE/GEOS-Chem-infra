@@ -67,7 +67,7 @@ Once you are familiar with running simulations on a cluster you can follow these
 cd "$WORKDIR"
 git clone https://github.com/geoschem/GCClassic.git
 cd GCClassic
-git checkout 14.4.3
+git switch --create=v14.4.3 tags/14.4.3
 ```
 
 2. Use GEOS-Chem's `createRunDir.sh` script to create a run dir for your simulation.
