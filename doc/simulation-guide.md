@@ -77,8 +77,15 @@ git switch --create=v14.4.3 tags/14.4.3
 cd "$WORKDIR/GCClassic/run"
 ./createRunDir.sh
 ```
-
-3. Copy job script templates for your computing platform into the run dir.
+3. In the new run directory, replace `OutputDir` and `Restarts` with symlinks to new dirs on `/bettik`:
+```bash
+cd "$WORKDIR/<run-dir>"
+rmdir OutputDir Restarts
+mkdir -p /bettik/PROJECTS/pr-geoschem/<your-username>/<run-dir>/OutputDir
+mkdir -p /bettik/PROJECTS/pr-geoschem/<your-username>/<run-dir>/Restarts
+ln -sv /bettik/PROJECTS/pr-geoschem/<your-username>/<run-dir>/* .
+```
+5. Copy job script templates for your computing platform into the run dir.
 
 ```bash
 cd "$WORKDIR/<run-dir>"
@@ -93,7 +100,7 @@ On GRICAD/CIMENT, you also need to copy the environment activation script:
 cp -iv "$WORKDIR/GEOS-Chem-infra/run/ciment/gcclassic-gnu14.env ."
 ```
 
-4. Build the model.
+5. Build the model.
 
 Edit the `1_build.sh` script if you want to set special [build options](https://geos-chem.readthedocs.io/en/stable/gcclassic-user-guide/config-overview.html).
 
@@ -104,17 +111,17 @@ Edit the `1_build.sh` script if you want to set special [build options](https://
 <job-submission-command> ./1_build.sh
 ```
 
-5. Configure your simulation.
+6. Configure your simulation.
 
-Edit `geoschem_config.yml`, `HEMCO_Config.rc`, `HISTORY.rc`, etc. as needed. See the documentation on [configuring a simulation](https://hemco.readthedocs.io/en/stable/hco-sa-guide/config-sim.html), and [configuring HEMCO](https://hemco.readthedocs.io/en/stable/hco-ref-guide/hemco-config.html) for details.
+Edit `geoschem_config.yml`, `HEMCO_Config.rc`, `HISTORY.rc`, etc. as needed. See the documentation on [configuring a simulation](https://geos-chem.readthedocs.io/en/stable/gcclassic-user-guide/config-overview.html), and [configuring HEMCO](https://hemco.readthedocs.io/en/stable/hco-ref-guide/hemco-config.html) for details.
 
-6. Execute a dry run.
+7. Execute a dry run.
 
 ```bash
 <job-submission-command> ./2_dryrun.sh
 ```
 
-7. Download any missing input data.
+8. Download any missing input data.
 
 If you need to download a large volume of data, edit `download-data.sh` to increase the walltime.
 
@@ -122,7 +129,7 @@ If you need to download a large volume of data, edit `download-data.sh` to incre
 <job-submission-command> ./download-data.sh
 ```
 
-8. Run your simulation
+9. Run your simulation
 
 > [!IMPORTANT]
 > First edit `3_run.sh` to configure an appropriate job walltime (the default is 8 hours). Note that 48 hours is the maximum allowed walltime on both GRICAD/CIMENT and ige-calcul.
@@ -187,7 +194,7 @@ mkdir -p <username>
 On ige-calcul, your `WORKDIR` is on your research team's volume:
 
 ```bash
-cd /workdir2/<teamname>
+cd /workdir/<teamname>
 mkdir -p <username>
 ```
 
@@ -211,7 +218,7 @@ cd GCClassic-v14.4.3
 
 # Checkout the desired version and create a new branch named with the version
 git checkout tags/14.4.3
-git switch --checkout v14.4.3
+git switch --create=v14.4.3 tags/14.4.3
 
 # Checkout all submodules (HEMCO, GEOS-Chem "science codebase")
 git submodule update --init --recursive
