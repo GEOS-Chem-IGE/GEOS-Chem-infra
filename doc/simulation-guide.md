@@ -68,6 +68,7 @@ cd "$WORKDIR"
 git clone --recurse-submodules https://github.com/geoschem/GCClassic.git
 cd GCClassic
 git switch --create=v14.4.3 tags/14.4.3
+git submodule update --init --recursive
 ```
 
 2. Use GEOS-Chem's `createRunDir.sh` script to create a run dir for your simulation.
