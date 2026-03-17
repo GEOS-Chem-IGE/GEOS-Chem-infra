@@ -1,4 +1,4 @@
 tools
 =====
 
-Miscellaneous helper scripts for managing GEOS-Chem simulations.
+This directory contains miscellaneous helper scripts for managing GEOS-Chem simulations.
