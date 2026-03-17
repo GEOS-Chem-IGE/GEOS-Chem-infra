@@ -31,11 +31,12 @@ You should also have a basic familiarity with the Unix command line and git. Man
 
 Common settings for both platforms
 ----------------------------------
-Model and simulation code should be placed in WORKDIR.
-The input data are located in INPUTDIR.
-The job-submission-command adds a task to the system's queue.
-The values of these variables for each platform are listed below:
 
+* Model and simulation code should be placed in `WORKDIR`.
+* The input data are located in `INPUTDIR`.
+* The `job-submission-command` adds a task to the system's queue.
+
+The values of these variables for each platform are listed below:
 
 <details>
      <summary>For GRICAD/CIMENT</summary>
@@ -78,7 +79,9 @@ git submodule update --init --recursive
 cd "$WORKDIR/GCClassic/run"
 ./createRunDir.sh
 ```
+
 3. In the new run directory, replace `OutputDir` and `Restarts` with symlinks to new dirs on `/bettik`:
+
 ```bash
 cd "$WORKDIR/<run-dir>"
 rmdir OutputDir Restarts
@@ -86,6 +89,7 @@ mkdir -p /bettik/PROJECTS/pr-geoschem/<your-username>/<run-dir>/OutputDir
 mkdir -p /bettik/PROJECTS/pr-geoschem/<your-username>/<run-dir>/Restarts
 ln -sv /bettik/PROJECTS/pr-geoschem/<your-username>/<run-dir>/* .
 ```
+
 5. Copy job script templates for your computing platform into the run dir.
 
 ```bash
@@ -187,6 +191,7 @@ On GRICAD/CIMENT, your `WORKDIR` is on the `/home/PROJECTS/pr-geoschem` volume:
 cd /home/PROJECTS/pr-geoschem
 mkdir -p <username>
 ```
+
 </details>
 
 <details>
@@ -201,7 +206,17 @@ mkdir -p <username>
 
 </details>
 
-Please add a `README.md` file in `WORKDIR` with a brief description of your research topic and a list of the people working on it.
+### 3. Clone this repository (GEOS-Chem-infra)
+
+This will give you access to helper scripts to facilitate building the model and running simulations.
+
+```bash
+# Go to your WORKDIR
+cd "$WORKDIR"
+
+# Clone the GEOS-Chem-infra repository
+git clone https://github.com/GEOS-Chem-IGE/GEOS-Chem-infra
+```
 
 ### 4. Clone the GEOS-Chem model code and check out your desired version
 
@@ -209,20 +224,19 @@ Please add a `README.md` file in `WORKDIR` with a brief description of your rese
 > You may find it helpful to add a suffix to the model code directory identifying a specific version.
 
 ```bash
-# Go to the shared project directory
+# Go to your WORKDIR
 cd "$WORKDIR"
 
 # Clone the GCClassic source code into a directory named with the version you
-# plan to use
-git clone https://github.com/geoschem/GCClassic.git GCClassic-14.4.3
+# plan to use (here 14.4.3)
+git clone --recurse-submodules https://github.com/geoschem/GCClassic.git GCClassic-14.4.3
 cd GCClassic-v14.4.3
 
-# Checkout the desired version and create a new branch named with the version
-git checkout tags/14.4.3
-git switch --create=v14.4.3 tags/14.4.3
+# Checkout the desired version
+git checkout --detach tags/14.4.3
 
-# Checkout all submodules (HEMCO, GEOS-Chem "science codebase")
-git submodule update --init --recursive
+# Update all submodules (HEMCO, GEOS-Chem "science codebase")
+git submodule update --recursive
 ```
 
 You can run `git log -n 1` to double-check you have checked out the desired tag. The first line of the output should include the text `tag: <version>`, for example:
@@ -405,7 +419,7 @@ The `/home/PROJECTS/pr-geoschem` project contains an environment constructed wit
 
 ```bash
 cd <run-dir>
-cp -iv "$WORKDIR/GEOS-Chem-infra/run/gcclassic-gnu14.env ."
+cp -iv "$WORKDIR/GEOS-Chem-infra/run/ciment/gcclassic-gnu14.env ."
 ```
 
 You should copy the script rather than using a symbolic link because the script might be modified in the future.
@@ -414,14 +428,14 @@ You should copy the script rather than using a symbolic link because the script 
 
 The GRICAD/CIMENT and ige-calcul clusters have two types of nodes: head nodes and computation nodes. Head nodes are reserved for light file management and submitting jobs. For other tasks such as compiling GCClassic or running a simulation you must submit a job that will be executed on a computation node.
 
-The `run` directory of this repository includes templates for job scripts to execute three tasks:
+The `run` directory of this repository includes templates for job scripts to execute common tasks:
 
 1. Build GCClassic (`1_build.sh`)
 2. Execute a dryrun to check the configuration and identify any missing input data (`2_dryrun.sh`)
-  - Download any missing input data identified by the dryrun (`download-data.sh`)
+3. Download any missing input data identified by the dryrun (`download-data.sh`)
 4. Run a simulation (`3_run.sh`)
 
-You should copy these example job scripts from `$WORKDIR/GEOS-Chem-infra/run/<platform>` into your `$RUNDIR`. It's important to copy the scripts rather than linking them because you will need to modify the settings (e.g. job resources and walltime).
+You should copy these example job scripts from `$WORKDIR/GEOS-Chem-infra/run/<platform>` into your run directory. It's important to copy the scripts rather than linking them because you will need to modify the settings (e.g. job resources and walltime).
 
 ```bash
 cd <run-dir>
@@ -465,4 +479,4 @@ About
 
 Authors: Ian Hough, Erfan Jahangir
 
-Date: 2026-01-16
+Date: 2026-03-17
