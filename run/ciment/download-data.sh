@@ -1,8 +1,11 @@
 #!/usr/bin/env bash
 
 #===============================================================================
-# Submit this script to execute a dryrun:
-#   oarsub -S ./download-data.sh DRY_RUN_LOG [aws|http]
+# Submit this script to download missing input data
+# Download using wget:
+#   oarsub -S "./download-data.sh DRY_RUN_LOG"
+# Download using aws cli
+#   oarsub -S "./download-data.sh --aws DRY_RUN_LOG"
 #
 # Author: Ian Hough
 # Date: 2025-04-11
