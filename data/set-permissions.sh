@@ -4,8 +4,16 @@
 # Set permissions on files and directories in summer/geoschem/COMMON/ExtData/
 #===============================================================================
 
+# Defaults
+GROUP="pr-geoschem"
+DIR_PERM="u=rwx,g=rwxs,o="
+FILE_PERM="u=rw,g=r,o="
+
+# Get current user
+USER=$(whoami)
+
 # Help message
-read -r -d '' help_message << EOM
+read -r -d '' HELP_MESSAGE << EOM
 Set permissions on all files and directories in summer/geoschem/COMMON/ExtData
 
 Usage:
@@ -13,6 +21,7 @@ Usage:
 
 Options:
   -h, --help     Print this help message
+  -n, --dry-run  Only display what would have been done
   -v, --verbose  Report all changes made
 
 Example:
@@ -25,22 +34,26 @@ function fail() {
 }
 
 # Default options
-verbose=""
+DRYRUN=""
+VERBOSE=""
 
 # Read options
-options=$(getopt -o hv -l help,verbose -- "$@")
+OPTIONS=$(getopt -o hnv -l help,dry-run,verbose -- "$@")
 if [ $? -ne 0 ]; then
   fail
 fi
-eval set -- "$options"
+eval set -- "$OPTIONS"
 while true; do
   case "$1" in
     -h|--help)
-      echo "$help_message"
+      echo "$HELP_MESSAGE"
       exit 0
       ;;
+    -n|--dry-run)
+      DRYRUN="true"
+      ;;
     -v|--verbose)
-      verbose="-c"
+      VERBOSE="-c"
       ;;
     --)
       shift
@@ -53,18 +66,72 @@ done
 # Detect location of ExtData
 ExtDataBase='summer/geoschem/COMMON/ExtData'
 ExtDataPath="/$ExtDataBase"
-if [[ ! -d "$ExtDataPath" ]]; then
+if [ ! -d "$ExtDataPath" ]; then
   ExtDataPath="/mnt/$ExtDataBase"
 fi
-if [[ ! -d "$ExtDataPath" ]]; then
-  echo "Could not find $ExtDataBase"
+if [ ! -d "$ExtDataPath" ]; then
+  echo "Could not find /$ExtDataBase or $ExtDataPath"
   exit 1
 fi
 
-echo "Setting directory permissions to 2770 in $ExtDataPath"
-find "$ExtDataPath" -type d -exec chmod $verbose 2770 {} +
-echo
+function list_files() {
+  for FILE in "${FILES[@]}"; do
+    stat -c "  %A %U %G %n" "$FILE"
+  done
+}
 
-echo "Setting file permissions to 0640 in $ExtDataPath"
-find "$ExtDataPath" -type f ! -path "$ExtDataPath/README.md" \
-  -exec chmod $verbose 0640 {} +
+echo "Setting group and permissions in $ExtDataPath ..."
+
+# Set group
+mapfile -t FILES < <(find "$ExtDataPath" -user "$USER" ! -group "$GROUP")
+COUNT=${#FILES[@]}
+if [ "$COUNT" -gt 0 ]; then
+  if [ -n "$DRYRUN" ]; then
+    echo "dry-run: skipping chgrp $GROUP for $COUNT files"
+    if [ -n "$VERBOSE" ]; then
+      list_files
+      echo
+    fi
+  else
+    for FILE in "${FILES[@]}"; do
+      chgrp "$VERBOSE" "$GROUP" "$FILE"
+    done
+  fi
+fi
+
+# Set directory permissions
+mapfile -t FILES < <(\
+  find "$ExtDataPath" -user "$USER" -type d ! -perm "$DIR_PERM")
+COUNT=${#FILES[@]}
+if [ "$COUNT" -gt 0 ]; then
+  if [ -n "$DRYRUN" ]; then
+    echo "dry-run: skipping chmod $DIR_PERM for $COUNT directories"
+    if [ -n "$VERBOSE" ]; then
+      list_files
+      echo
+    fi
+  else
+    for FILE in "${FILES[@]}"; do
+      chmod "$VERBOSE" "$DIR_PERM" "$FILE"
+    done
+  fi
+fi
+
+# Set file permissions
+mapfile -t FILES < <(\
+  find "$ExtDataPath" -user "$USER" ! -path "$ExtDataPath"/README.md\
+    -type f ! -perm "$FILE_PERM")
+COUNT=${#FILES[@]}
+if [ "$COUNT" -gt 0 ]; then
+  if [ -n "$DRYRUN" ]; then
+    echo "dry-run: skipping chmod $FILE_PERM for $COUNT files"
+    if [ -n "$VERBOSE" ]; then
+      list_files
+      echo
+    fi
+  else
+    for FILE in "${FILES[@]}"; do
+      chmod "$VERBOSE" "$FILE_PERM" "$FILE"
+    done
+  fi
+fi
