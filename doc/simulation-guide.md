@@ -80,7 +80,7 @@ cd "$WORKDIR/GCClassic/run"
 ./createRunDir.sh
 ```
 
-3. In the new run directory, replace `OutputDir` and `Restarts` with symlinks to new dirs on `/bettik`:
+3. For **GRICAD/CIMENT** users only :In the new run directory, replace `OutputDir` and `Restarts` with symlinks to new dirs on `/bettik`:
 
 ```bash
 cd "$WORKDIR/<run-dir>"
@@ -90,7 +90,7 @@ mkdir -p /bettik/PROJECTS/pr-geoschem/<your-username>/<run-dir>/Restarts
 ln -sv /bettik/PROJECTS/pr-geoschem/<your-username>/<run-dir>/* .
 ```
 
-5. Copy job script templates for your computing platform into the run dir.
+4. Copy job script templates for your computing platform into the run dir.
 
 ```bash
 cd "$WORKDIR/<run-dir>"
@@ -410,7 +410,7 @@ Do you want to track run directory changes with git? (y/n)
 
 You can answer `y` even if you do not intend to use git to track your simulation settings; this will simply create a git repository in your run directory. You may wish to answer `n` if you plan on using a single git repository to track the settings of multiple simulations (e.g. multiple run dirs within a parent dir that is a git repository).
 
-### 7. Configure the run environment
+### 6. Configure the run environment
 
 > [!NOTE]
 > `ige-calcul` users can skip this step.
@@ -424,7 +424,7 @@ cp -iv "$WORKDIR/GEOS-Chem-infra/run/ciment/gcclassic-gnu14.env ."
 
 You should copy the script rather than using a symbolic link because the script might be modified in the future.
 
-### 8. Configure job scripts
+### 7. Configure job scripts
 
 The GRICAD/CIMENT and ige-calcul clusters have two types of nodes: head nodes and computation nodes. Head nodes are reserved for light file management and submitting jobs. For other tasks such as compiling GCClassic or running a simulation you must submit a job that will be executed on a computation node.
 
@@ -447,7 +447,7 @@ cp -iv "$WORKDIR/GEOS-Chem-infra/run/<platform-name>/*.sh ."
 
 You can find more details on job submission and management in the [GRICAD/CIMENT documentation](https://gricad-doc.univ-grenoble-alpes.fr/en/hpc/joblaunch/) and the [ige-calcul](https://ige-calcul.github.io/public-docs/docs/clusters/Ige/ige-calcul1.html#slurm-submit-a-job-on-the-cluster) documentation.
 
-### 9. Configure the simulation
+### 8. Configure the simulation
 
 You can now follow the GCClassic user guide steps to:
 
@@ -460,7 +460,7 @@ You can now follow the GCClassic user guide steps to:
 > [!IMPORTANT]
 > Do not run the commands in these guides on the head node. Whenever the setup guide tells you to execute a command, use one of the job scripts to execute it on a computation node. For example, the `1_build.sh` script will configure the compilation with `cmake` and build the code with `make`.
 
-### 10. Examine the simulation output
+### 9. Examine the simulation output
 
 If your run completed successfully, you should see the output files in `<run-dir>/OutputDir`.
 
