@@ -1,20 +1,17 @@
 #!/usr/bin/env bash
 
-#===============================================================================
-# Set permissions on files and directories in summer/geoschem/COMMON/ExtData/
-#===============================================================================
+#============================================================
+# Set permissions and group in summer/geoschem/COMMON/ExtData
+#============================================================
 
-# Defaults
+# Desired permissions
 GROUP="pr-geoschem"
-DIR_PERM="u=rwx,g=rwxs,o="
-FILE_PERM="u=rw,g=r,o="
-
-# Get current user
-USER=$(whoami)
+DIR_PERM="u=rwx,g=rwxs,o=rx"
+FILE_PERM="u=rw,g=r,o=r"
 
 # Help message
 read -r -d '' HELP_MESSAGE << EOM
-Set permissions on all files and directories in summer/geoschem/COMMON/ExtData
+Set permissions and group on all files in summer/geoschem/COMMON/ExtData
 
 Usage:
   set-permissions.sh [OPTION]
@@ -80,7 +77,10 @@ function list_files() {
   done
 }
 
-echo "Setting group and permissions in $ExtDataPath ..."
+echo "Setting permissions and group in $ExtDataPath ..."
+
+# Get current user
+USER=$(whoami)
 
 # Set group
 mapfile -t FILES < <(find "$ExtDataPath" -user "$USER" ! -group "$GROUP")
@@ -94,7 +94,7 @@ if [ "$COUNT" -gt 0 ]; then
     fi
   else
     for FILE in "${FILES[@]}"; do
-      chgrp "$VERBOSE" "$GROUP" "$FILE"
+      chgrp $VERBOSE "$GROUP" "$FILE"
     done
   fi
 fi
@@ -112,15 +112,14 @@ if [ "$COUNT" -gt 0 ]; then
     fi
   else
     for FILE in "${FILES[@]}"; do
-      chmod "$VERBOSE" "$DIR_PERM" "$FILE"
+      chmod $VERBOSE "$DIR_PERM" "$FILE"
     done
   fi
 fi
 
 # Set file permissions
 mapfile -t FILES < <(\
-  find "$ExtDataPath" -user "$USER" ! -path "$ExtDataPath"/README.md\
-    -type f ! -perm "$FILE_PERM")
+  find "$ExtDataPath" -user "$USER" -type f ! -perm "$FILE_PERM")
 COUNT=${#FILES[@]}
 if [ "$COUNT" -gt 0 ]; then
   if [ -n "$DRYRUN" ]; then
@@ -131,7 +130,7 @@ if [ "$COUNT" -gt 0 ]; then
     fi
   else
     for FILE in "${FILES[@]}"; do
-      chmod "$VERBOSE" "$FILE_PERM" "$FILE"
+      chmod $VERBOSE "$FILE_PERM" "$FILE"
     done
   fi
 fi
