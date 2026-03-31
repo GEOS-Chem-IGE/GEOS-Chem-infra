@@ -2,7 +2,7 @@
 
 #SBATCH -c 1
 #SBATCH -N 1
-#SBATCH --time 00:30:00
+#SBATCH --time 02:00:00
 #SBATCH --mem=15000
 #SBATCH --account=chianti
 #SBATCH --mail-type=FAIL
@@ -25,6 +25,7 @@ export OMP_STACKSIZE=500m
 # Run GEOS-Chem.  The "time" command will return CPU and wall times.
 # Stdout and stderr will be directed to the "GC.log" log file
 # (you can change the log file name below if you wish)
-srun -c $OMP_NUM_THREADS ./gcclassic --dryrun | tee log.dryrun
+#srun -c $OMP_NUM_THREADS time -p ./gcclassic > GC.log 2>&1
+./download_data.py log.dryrun geoschem+http
 # Exit normally
 exit 0

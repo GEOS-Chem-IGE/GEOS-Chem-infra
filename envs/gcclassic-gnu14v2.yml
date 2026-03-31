@@ -1,0 +1,32 @@
+#===============================================================================
+# Micromamba environment specification for GCClassic with GNU 14.1.0 compilers
+# and nco
+#
+# To create the environment:
+#   micromamba create --file gcclassic-gnu14v2.yml
+#
+# NOTE: This file does not pin package builds or dependencies. To **exactly**
+# reproduce the environment, use the gcclassic-gnu14v2.lock file:
+#   micromamba create --name gcclassic-gnu14v2 --file gcclassic-gnu14v2.lock
+#
+# Author: Ian Hough, Erfan Jahangir
+# Date: 2026-03-26
+#===============================================================================
+
+name: gcclassic-gnu14v2
+channels:
+  - conda-forge
+dependencies:
+  - awscli=2.25.8
+  - cmake=3.30.3
+  - gcc=14.1.0
+  - gfortran=14.1.0
+  - git=2.46.2
+  - gxx=14.1.0
+  - hdf5[build="mpi_mpich*"]
+  - libnetcdf[version="=4.9.2",build="mpi_mpich*"]
+  - make=4.4.1
+  - nco=5.3.6
+  - netcdf-fortran[version="=4.6.1",build="mpi_mpich*"]
+  - pyyaml=6.0.2
+  - tree=2.1.3
