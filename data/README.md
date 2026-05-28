@@ -11,5 +11,7 @@ Use `update-file-list.sh` to update the list of data files.
 
 Use `set-permissions.sh` to set consistent permissions on all data files:
 
-* `drwxrws---` for directories
-* `-rw-r-----` for files
+* `drwxrwsr-x` for directories
+* `-rw-r--r--` for files
+
+Use `check-permissions`.sh` to identify files with wrong permissions
