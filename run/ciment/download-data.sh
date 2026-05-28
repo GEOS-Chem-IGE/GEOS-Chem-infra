@@ -14,7 +14,6 @@
 #OAR -n download-data
 #OAR --project pr-geoschem
 #OAR -l /nodes=1/core=1,walltime=00:30:00
-#OAR -t heterogeneous
 
 # Help message
 read -r -d '' help_message << EOM

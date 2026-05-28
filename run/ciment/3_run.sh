@@ -10,8 +10,7 @@
 
 #OAR -n 3_run
 #OAR --project pr-geoschem
-#OAR -l /nodes=1,walltime=08:00:00
-#OAR -t heterogeneous
+#OAR -l /nodes=1,walltime=12:00:00
 
 # Activate the GCClassic environment
 source gcclassic-gnu14.env
