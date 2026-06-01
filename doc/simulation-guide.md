@@ -80,8 +80,11 @@ cd "$WORKDIR/GCClassic/run"
 ./createRunDir.sh
 ```
 
-3. For **GRICAD/CIMENT** users only :In the new run directory, replace `OutputDir` and `Restarts` with symlinks to new dirs on `/bettik`:
+3. In the new run directory, replace `OutputDir` and `Restarts` with symlinks to new directories on a dedicated data storage (/bettik for GRICAD users or /workdir2 for ige-calcul users):
 
+
+<details>
+     <summary>For GRICAD/CIMENT</summary>
 ```bash
 cd "$WORKDIR/<run-dir>"
 rmdir OutputDir Restarts
@@ -89,6 +92,19 @@ mkdir -p /bettik/PROJECTS/pr-geoschem/<your-username>/<run-dir>/OutputDir
 mkdir -p /bettik/PROJECTS/pr-geoschem/<your-username>/<run-dir>/Restarts
 ln -sv /bettik/PROJECTS/pr-geoschem/<your-username>/<run-dir>/* .
 ```
+</details>
+
+<details>
+     <summary>For ige-calcul</summary>
+```bash
+cd "$WORKDIR/<run-dir>"
+rmdir OutputDir Restarts
+mkdir -p /workdir2/<your-username>/<run-dir>/OutputDir
+mkdir -p /workdir2/<your-username>/<run-dir>/Restarts
+ln -sv /workdir2/<your-username>/<run-dir>/* .
+```
+<details>
+
 
 4. Copy job script templates for your computing platform into the run dir.
 
@@ -380,7 +396,7 @@ Choose number of levels:
 >>> 1
 ```
 
-Create the run directory in the subdirectory you created in step 3:
+Create the run directory in the subdirectory you created in step 2:
 
 ```
 -----------------------------------------------------------
