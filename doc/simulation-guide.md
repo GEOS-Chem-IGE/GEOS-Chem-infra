@@ -92,6 +92,7 @@ mkdir -p /bettik/PROJECTS/pr-geoschem/<your-username>/<run-dir>/OutputDir
 mkdir -p /bettik/PROJECTS/pr-geoschem/<your-username>/<run-dir>/Restarts
 ln -sv /bettik/PROJECTS/pr-geoschem/<your-username>/<run-dir>/* .
 ```
+
 </details>
 
 <details>
@@ -103,8 +104,8 @@ mkdir -p /workdir2/<your-username>/<run-dir>/OutputDir
 mkdir -p /workdir2/<your-username>/<run-dir>/Restarts
 ln -sv /workdir2/<your-username>/<run-dir>/* .
 ```
-<details>
 
+</details>
 
 4. Copy job script templates for your computing platform into the run dir.
 
