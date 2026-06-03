@@ -124,7 +124,11 @@ cp -iv "$WORKDIR/GEOS-Chem-infra/run/ciment/gcclassic-gnu14.env ."
 
 5. Build the model.
 
-Edit the `1_build.sh` script if you want to set special [build options](https://geos-chem.readthedocs.io/en/stable/gcclassic-user-guide/config-overview.html).
+Edit the `1_build.sh` script if you want to set special [build options](https://geos-chem.readthedocs.io/en/stable/gcclassic-user-guide/config-overview.html). This build script is designed only for fullchem simulations. If you wish to run a Hg simulation, for example, you will need to modify the following line:
+```bash
+time -p cmake ../CodeDir -DRUNDIR=.. -DMECH=fullchem
+```
+and replace `fullchem` by `Hg`.
 
 > [!TIP]
 > The link above points to the documentation for the latest stable version of GCClassic. If you are using an older version, click on the black box in the bottom right corner of the page to select the documentation for the GCClassic version that you are using.
