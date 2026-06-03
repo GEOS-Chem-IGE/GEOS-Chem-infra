@@ -27,8 +27,8 @@ export OMP_STACKSIZE=500m
 # Stdout and stderr will be directed to the "GC.log" log file
 # (you can change the log file name below if you wish)
 #srun -c $OMP_NUM_THREADS time -p ./gcclassic > GC.log 2>&1
-time -p cmake ../CodeDir -DRUNDIR=..
-time -p make -j
+time -p cmake ../CodeDir -DRUNDIR=.. -DMECH=fullchem
+time -p make -j`
 time -p make install
 # Exit normally
 exit 0
