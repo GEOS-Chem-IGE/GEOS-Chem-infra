@@ -5,9 +5,7 @@
 #SBATCH --time 00:30:00
 #SBATCH --mem=15000
 #SBATCH --account=chianti
-#SBATCH --mail-user=erfan.jahangir@univ-grenoble-alpes.fr
-#SBATCH --mail-type=FAIL
-#SBATCH --mail-type=END
+
 
 ###############################################################################
 ### Sample GEOS-Chem run script for SLURM
@@ -27,7 +25,8 @@ export OMP_STACKSIZE=500m
 # Stdout and stderr will be directed to the "GC.log" log file
 # (you can change the log file name below if you wish)
 #srun -c $OMP_NUM_THREADS time -p ./gcclassic > GC.log 2>&1
-time -p cmake ../CodeDir -DRUNDIR=.. -DMECH=fullchem
+cd build
+time -p cmake ../CodeDir -DRUNDIR=.. 
 time -p make -j`
 time -p make install
 # Exit normally
