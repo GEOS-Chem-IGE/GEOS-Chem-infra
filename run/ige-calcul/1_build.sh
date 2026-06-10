@@ -27,7 +27,7 @@ export OMP_STACKSIZE=500m
 #srun -c $OMP_NUM_THREADS time -p ./gcclassic > GC.log 2>&1
 cd build
 time -p cmake ../CodeDir -DRUNDIR=.. 
-time -p make -j`
+time -p make -j
 time -p make install
 # Exit normally
 exit 0
