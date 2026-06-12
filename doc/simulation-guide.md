@@ -85,6 +85,7 @@ cd "$WORKDIR/GCClassic/run"
 
 <details>
      <summary>For GRICAD/CIMENT</summary>
+     
 ```bash
 cd "$WORKDIR/<run-dir>"
 rmdir OutputDir Restarts
@@ -97,6 +98,7 @@ ln -sv /bettik/PROJECTS/pr-geoschem/<your-username>/<run-dir>/* .
 
 <details>
      <summary>For ige-calcul</summary>
+     
 ```bash
 cd "$WORKDIR/<run-dir>"
 rmdir OutputDir Restarts
