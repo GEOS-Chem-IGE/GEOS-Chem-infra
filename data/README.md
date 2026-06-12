@@ -27,5 +27,4 @@ For example, to check for corrupted meteorological files you may run :
 
 
 > [!NOTE]
-> Bashdatacatalog should always be run from the top-level GEOS-Chem data directory. In our case, this is:
-`/smmer/geoschem/COMMON/ExtData`
+> Bashdatacatalog should always be run from the top-level GEOS-Chem data directory. In our case, this is: `/summer/geoschem/COMMON/ExtData`
