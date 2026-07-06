@@ -148,6 +148,11 @@ Edit `geoschem_config.yml`, `HEMCO_Config.rc`, `HISTORY.rc`, etc. as needed. See
 ```bash
 <job-submission-command> ./2_dryrun.sh
 ```
+The output of the dryrun is a log file called `log.<filename>` . Users can define the `<filename>` by modifying the last line of the `2_dryrun.sh` file : 
+```bash
+time -p ./gcclassic --dryrun
+```
+Users can inspect this file using commands like `vi`,`nano` or `cat`. This helps identify any errors skipped during the build process and lists missing data files that will be needed later for `download-data.sh`
 
 8. Download any missing input data.
 
@@ -253,7 +258,7 @@ cd "$WORKDIR"
 # Clone the GCClassic source code into a directory named with the version you
 # plan to use (here 14.4.3)
 git clone --recurse-submodules https://github.com/geoschem/GCClassic.git GCClassic-14.4.3
-cd GCClassic-v14.4.3
+cd GCClassic-14.4.3
 
 # Checkout the desired version
 git checkout --detach tags/14.4.3
