@@ -477,7 +477,7 @@ You can find more details on job submission and management in the [GRICAD/CIMENT
 
 ### 8. Configure the simulation
 
-You can now follow the GCClassic user guide steps to:
+This guide outlines the requirements for running GEOS-Chem on the IGE infrastructure, adapting the official GCClassic user guide. For detailed information on each step, please refer to the original documentation:
 
 1. [Compile the code](https://geos-chem.readthedocs.io/en/stable/gcclassic-user-guide/compile.html)
 2. [Configure your simulation](https://geos-chem.readthedocs.io/en/stable/gcclassic-user-guide/config-overview.html)
