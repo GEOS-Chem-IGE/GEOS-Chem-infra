@@ -54,8 +54,7 @@ flowchart TD
     STILL -- "No" --> RUN
     STILL -- "Yes" --> CATALOG
 
-    CATALOG --> DRY3
-    DRY3 --> RUN
+    CATALOG --> RUN
 
     RUN --> END
 ```
