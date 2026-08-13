@@ -31,7 +31,6 @@ flowchart TD
     STILL{"Still missing?"}
 
     CATALOG["bashdatacatalog"]
-    DRY3["2_dryrun.sh"]
 
 
     A --> B
@@ -55,6 +54,7 @@ flowchart TD
     STILL -- "Yes" --> CATALOG
 
     CATALOG --> RUN
+   
 
     RUN --> END
 ```
