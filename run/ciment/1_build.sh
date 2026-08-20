@@ -10,8 +10,7 @@
 
 #OAR -n 1_build
 #OAR --project pr-geoschem
-#OAR -l /nodes=1/core=1,walltime=00:10:00
-#OAR -t heterogeneous
+#OAR -l /nodes=1/core=1,walltime=00:20:00
 
 # Exit on any error
 set -e

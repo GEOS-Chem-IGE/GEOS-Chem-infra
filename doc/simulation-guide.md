@@ -80,8 +80,12 @@ cd "$WORKDIR/GCClassic/run"
 ./createRunDir.sh
 ```
 
-3. For **GRICAD/CIMENT** users only :In the new run directory, replace `OutputDir` and `Restarts` with symlinks to new dirs on `/bettik`:
+3. In the new run directory, replace `OutputDir` and `Restarts` with symlinks to new directories on a dedicated data storage (/bettik for GRICAD users or /workdir2 for ige-calcul users):
 
+
+<details>
+     <summary>For GRICAD/CIMENT</summary>
+     
 ```bash
 cd "$WORKDIR/<run-dir>"
 rmdir OutputDir Restarts
@@ -89,6 +93,21 @@ mkdir -p /bettik/PROJECTS/pr-geoschem/<your-username>/<run-dir>/OutputDir
 mkdir -p /bettik/PROJECTS/pr-geoschem/<your-username>/<run-dir>/Restarts
 ln -sv /bettik/PROJECTS/pr-geoschem/<your-username>/<run-dir>/* .
 ```
+
+</details>
+
+<details>
+     <summary>For ige-calcul</summary>
+     
+```bash
+cd "$WORKDIR/<run-dir>"
+rmdir OutputDir Restarts
+mkdir -p /workdir2/<your-username>/<run-dir>/OutputDir
+mkdir -p /workdir2/<your-username>/<run-dir>/Restarts
+ln -sv /workdir2/<your-username>/<run-dir>/* .
+```
+
+</details>
 
 4. Copy job script templates for your computing platform into the run dir.
 
@@ -107,7 +126,11 @@ cp -iv "$WORKDIR/GEOS-Chem-infra/run/ciment/gcclassic-gnu14.env ."
 
 5. Build the model.
 
-Edit the `1_build.sh` script if you want to set special [build options](https://geos-chem.readthedocs.io/en/stable/gcclassic-user-guide/config-overview.html).
+Edit the `1_build.sh` script if you want to set special [build options](https://geos-chem.readthedocs.io/en/stable/gcclassic-user-guide/config-overview.html). This build script is designed only for fullchem simulations. If you wish to run a Hg simulation, for example, you will need to modify the following line:
+```bash
+time -p cmake ../CodeDir -DRUNDIR=.. -DMECH=fullchem
+```
+and replace `fullchem` by `Hg`.
 
 > [!TIP]
 > The link above points to the documentation for the latest stable version of GCClassic. If you are using an older version, click on the black box in the bottom right corner of the page to select the documentation for the GCClassic version that you are using.
@@ -125,6 +148,11 @@ Edit `geoschem_config.yml`, `HEMCO_Config.rc`, `HISTORY.rc`, etc. as needed. See
 ```bash
 <job-submission-command> ./2_dryrun.sh
 ```
+The output of the dryrun is a log file called `log.<filename>` . Users can define the `<filename>` by modifying the last line of the `2_dryrun.sh` file : 
+```bash
+time -p ./gcclassic --dryrun
+```
+Users can inspect this file using commands like `vi`,`nano` or `cat`. This helps identify any errors skipped during the build process and lists missing data files that will be needed later for `download-data.sh`
 
 8. Download any missing input data.
 
@@ -230,7 +258,7 @@ cd "$WORKDIR"
 # Clone the GCClassic source code into a directory named with the version you
 # plan to use (here 14.4.3)
 git clone --recurse-submodules https://github.com/geoschem/GCClassic.git GCClassic-14.4.3
-cd GCClassic-v14.4.3
+cd GCClassic-14.4.3
 
 # Checkout the desired version
 git checkout --detach tags/14.4.3
@@ -380,7 +408,7 @@ Choose number of levels:
 >>> 1
 ```
 
-Create the run directory in the subdirectory you created in step 3:
+Create the run directory in the subdirectory you created in step 2:
 
 ```
 -----------------------------------------------------------
@@ -449,7 +477,7 @@ You can find more details on job submission and management in the [GRICAD/CIMENT
 
 ### 8. Configure the simulation
 
-You can now follow the GCClassic user guide steps to:
+This guide outlines the requirements for running GEOS-Chem on the IGE infrastructure, adapting the official GCClassic user guide. For detailed information on each step, please refer to the original documentation:
 
 1. [Compile the code](https://geos-chem.readthedocs.io/en/stable/gcclassic-user-guide/compile.html)
 2. [Configure your simulation](https://geos-chem.readthedocs.io/en/stable/gcclassic-user-guide/config-overview.html)
